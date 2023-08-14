@@ -1,10 +1,29 @@
-# Python 分布式编程
+# Python数据科学实战![Static Badge](https://img.shields.io/badge/python-3.8%2B-blue)![Github stars](https://img.shields.io/github/stars/py-101/python-data-science.svg)
+
+
+开源的、面向人文社科的 Python 数据科学教程。
+
+本项目内容包括数据分析、可视化、机器学习与因果推断。
+
+在线阅读地址：https://py-101.github.io/python-data-science/
+
+如果这个项目对你有帮助，欢迎 star本仓库。
+
+
+
+<img src= "img\ch-pyhton-lang\python-ecosystem.svg" height= 300>
+
+
+
+## 本教程的适用群体
+
+本书适用于以下读者：
+
+1. 接触过基础 python 语法，期望学习数据科学、机器学习的经管背景读者；
+2. 寻找数据分析实战教程的读者；
+3. 对数据应用和前沿因果推断问题感兴趣的读者。
 
 ## 主要内容
-
-#### 背景
-
-* `ch-python-lang`：介绍 Python 语言、生态以及本书主要内容。
 
 #### 科学计算
 
@@ -18,6 +37,8 @@
 
 #### 数据可视化
 
+- matplotlib 
+
 #### 机器学习
 
 * scikit-learn
@@ -28,9 +49,24 @@
 
 ## 参与编写
 
-### 环境安装
+本书基于名为 d2lbook 的 Python 工具编译，并部署在 GitHub Pages 上。
 
-本书基于名为 d2lbook 的 Python 工具编译，并部署在GitHub Pages上。
+您可以通过网站[在线阅读](https://py-101.github.io/python-data-science/)并复现书中内容。
+
+或者您可以通过以下方式本地预览。
+
+### 克隆仓库
+
+通过git clone的方式克隆本仓库到本地
+
+```git
+git clone https://github.com/py-101/python-data-science.git
+```
+
+
+### 环境配置
+
+本书基于名为 d2lbook 的 Python 工具编译，书中案例基于python3.8
 
 * 选择一个包管理工具，比如 `conda` 或者 `venv`
 * 安装 Python >= 3.8
@@ -89,4 +125,13 @@ python -m http.server 8000
 
 构建 pdf 时如果有 svg 图片需要安装 LibRsvg 来转换 svg 图片，安装 `librsvg` 可以通过`apt-get install librsvg`（如果是 macOS 可以用 Homebrew）。
 
-构建 pdf 必须要有 LaTeX，请安装[Tex Live](https://www.tug.org/texlive/).
+构建 pdf 必须要有 LaTeX，请安装 [Tex Live](https://www.tug.org/texlive/)。
+
+## 贡献
+
+欢迎您通过issue的方式来报告教程中的问题：[issue](https://github.com/py-101/python-data-science/issues)
+
+## LICENSE
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey" /></a>
+
+本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
