@@ -12,7 +12,7 @@ git clone https://github.com/py-101/python-data-science.git
 
 ## 环境配置
 
-本书基于名为 d2lbook 的 Python 工具构建，书中案例基于 python3.8
+本书基于名为 d2lbook 的 Python 工具构建，书中案例基于 Python>=3.8
 
 * 选择一个包管理工具，比如 `conda` 或者 `venv`
 * 安装 Python >= 3.8
@@ -22,45 +22,41 @@ git clone https://github.com/py-101/python-data-science.git
 pip install -r requirements.txt
 ```
 
-若 b2lbook 安装失败，请通过请参考 [b2lbook 官方文档](https://book.d2l.ai/install.html) 安装
-
-```bash
-git clone https://github.com/openmlsys/d2l-book.git
-cd d2l-book
-python setup.py install
-```
+若 d2lbook 安装失败，请通过请参考 [d2lbook 官方文档](https://book.d2l.ai/install.html) 安装。
 
 ## 构建 HTML 格式
 
-b2lbook 通过构建`.ipynb`或`.md` 文件至 HTML 格式实现。你可以将提交的文件通过以下方式构建。
+本书主要内容使用 `.md` 文件保存。d2lbook 可以将 `.ipynb` 或 `.md` 文件转化为 HTML 格式。你通过以下方式构建 HTML。
 
-- 如果想从 `.ipynb` 文件开始构建工程，构建 HTML 时，不需要运行 `.ipynb` 里面的 Python 代码，运行下面的命令从已经有运行结果的 `.ipynb` 转化为 HTML，并拷贝到 `docs` 目录：
+文件格式流程为：`.md` -> `_build/eval/*.ipynb` -> `_build/rst/*.rst` -> `_build/html/*.html`。
 
-```bash
-sh build_from_eval_ipynb.sh
-```
+- 从 `.md` 文件开始构建工程：
 
-- 如果想从 `.md` 文件开始构建工程，可以考虑使用 `build_from_scratch.sh`，转换为 HTML 格式，并拷贝到 `docs` 目录：
+考虑使用 `build_from_scratch.sh`，转换为 HTML 格式，并拷贝到 `docs` 目录：
 
 ```bash
 sh build_from_scratch.sh
 ```
 
-## 构建提示
+- 从 `.ipynb` 文件开始构建工程：
 
-建议采用从 `.ipynb` 文件开始构建文档。
+由于 d2lbook 使用了名为 [notedown](https://github.com/d2l-ai/notedown/) 工具，将 `.md` 文件运行，并转化为 `.ipynb` 文件，这个过程只使用了 1 个 CPU 核心，那意味着运行每个 `.ipynb` 文件的速度较慢，可能超时。如果想从 `.md` 文件开始构建工程，部分 `.md` 文件可能无法生成 `.ipynb`。
 
-由于 d2lbook 使用了名为 [notedown](https://github.com/d2l-ai/notedown/) 工具，将 `.md` 文件运行，并转化为 `.ipynb` 文件，只使用了 1 个 CPU 核心，速度较慢，如果想从 `.md` 文件开始构建工程，部分 `.md` 文件可能无法生成 `.ipynb`。
-
-解决办法：将 `_build/eval/` 内容也加进了 git 仓库，每次只对有改动的 `.md` 文件转换为 `.ipynb` 并运行，例如，修改了 `ch-xxxx/yyyy.md`，构建时，调用该命令，重新生成对应的 `.ipynb`：
+解决办法：我们将 `_build/eval/` 内容也加进了 git 仓库，每次只对有改动的 `.md` 文件转换为 `.ipynb` 并运行，例如，修改了 `ch-xxxx/yyyy.md`，构建时，调用该命令，重新生成对应的 `.ipynb`：
 
 ```bash
 notedown ch-xxxx/yyyy.md --run --timeout=1200 > _build/eval/ch-xxxx/yyyy.ipynb
 ```
 
+然后运行下面的命令从已经有运行结果的 `.ipynb` 转化为 HTML，并拷贝到 `docs` 目录：
+
+```bash
+sh build_from_eval_ipynb.sh
+```
+
 ## 部署到 GitHub Pages
 
-本项目的 HTML 部署在 GitHub Pages 上，GitHub Pages 读取 `docs` 目录下内容。在构建生成 HTML 格式后，请检查 `docs` 目录下内容确保新内容已被添加。
+本项目的 HTML 部署在 GitHub Pages 上，GitHub Pages 读取本项目中 `docs` 目录下内容。在构建生成 HTML 格式后，请检查 `docs` 目录下内容已更新。
 
 ## 启动 HTTP Server
 
@@ -72,4 +68,5 @@ python -m http.server 8000
 ```
 
 ## 风格指南
+
 贡献请遵照本教程的 [样式规范](style.md)。
