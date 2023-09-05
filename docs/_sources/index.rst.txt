@@ -13,4 +13,6 @@ Python 数据科学实战
 
    ch-python-lang/index
 
+   ch-pandas/index
+
    refs
