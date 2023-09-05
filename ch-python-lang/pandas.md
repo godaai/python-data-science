@@ -165,4 +165,10 @@ df.info()
   ```{.python .input}
   df.iloc[2:5, 0:4]
   ```
+
+  |   | country | country isocode | year | POP         |
+  |---|---------|-----------------|------|-------------|
+  | 2 |   India |             IND | 2000 | 1006300.297 |
+  | 3 |  Israel |             ISR | 2000 |    6114.570 |
+  | 4 |  Malawi |             MWI | 2000 |   11801.505 |
   
