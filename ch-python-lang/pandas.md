@@ -148,7 +148,8 @@ df.info()
     ``` 
   
      > 如果只选取一列，df['country']等价于df.country。
-       |   | country       | tcgdp        |
+       
+  |   | country       | tcgdp        |
   |---|---------------|--------------|
   | 0 |     Argentina | 2.950722e+05 |
   | 1 |     Australia | 5.418047e+05 |
@@ -158,7 +159,7 @@ df.info()
   | 5 |  South Africa | 2.272424e+05 |
   | 6 | United States | 9.898700e+06 |
   | 7 |       Uruguay | 2.525596e+04 |
-     > 
+     
 - `iloc`方法选择，形式应为`.iloc[rows, columns]`
 
   ```{.python .input}
