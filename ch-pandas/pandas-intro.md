@@ -34,8 +34,22 @@ s = pd.Series([1, 2, 3, 4], name = 'my series')
 
 - Series 支持描述性统计。
 
+  获得所有统计信息。
   ```{.python .input}
   s.describe()
+  ```
+
+  分别计算平均值，中位数和标准差。
+  ```{.python .input}
+  s.mean()
+  ```
+
+  ```{.python .input}
+  s.median()
+  ```
+
+  ```{.python .input}
+  s.std()
   ```
 
 - Series 的索引很灵活。
@@ -120,6 +134,7 @@ else:
 使用 `read_csv()` 读取数据。
 
 ```{.python .input}
+import pandas as pd
 df = pd.read_csv(os.path.join(folder_path, "pwt70_w_country_names.csv"))
 ```
 
@@ -148,25 +163,240 @@ df.info()
 
 - 切片选择行
   
-从第 2 行到第 5 行（不包括第 5 行）：
-  
-```{.python .input}
-df[2:5]
-```
+  从第 2 行到第 5 行（不包括第 5 行）：
+    
+  ```{.python .input}
+  df[2:5]
+  ```
 
 - 列名索引选择列
 
-要选择列，我们可以传递一个列表，其中包含以字符串表示的所需列的名称。
+  要选择列，我们可以传递一个列表，其中包含以字符串表示的所需列的名称。
+  
+  ```{.python .input}
+  df[['country', 'tcgdp']]
+  ```
 
-```{.python .input}
-df[['country', 'tcgdp']]
-```
-
-如果只选取一列，df['country'] 等价于 `df.country`。
+  如果只选取一列，df['country'] 等价于 `df.country`。
 
 - `iloc` 方法选择，形式应为 `.iloc[rows, columns]`
 
-```{.python .input}
-df.iloc[2:5, 0:4]
-```
+  选择第 2 行到第 5 行（不包括第 5 行），第 0 列到第 4 列（不包括第 4 列）。
+  ```{.python .input}
+  df.iloc[2:5, 0:4]
+  ```
+
+- `loc`方法选择，可以使用整数和标签混合的方法
+
+  选择第 2 行到第 5 行（不包括第 5 行），`country` 和 `tcgdp` 列。
+  ```{.python .input}
+  df.loc[df.index[2:5], ['country', 'tcgdp']]
+  ```
+
+- 条件选择
+  > 用`[]`操作符。
+  
+  例：选取 POP 大于 20000 的行。
+
+  `df.POP >= 20000`返回一系列布尔值，则`df[]`返回条件判断为 True 的行。
+  
+  ```{.python .input}
+  df[df.POP >= 20000]
+  ```
+  > 等价于`.query()`方法，且这种方法在处理大规模数据时更快。
+  ```{.python .input}
+  df.query("POP >= 20000")
+  ```
+
+    该方法允许不同列之间做算术运算。
+  
+    例：选择 cc 列和 cg 列的和大于 80 并且 POP 小于 20000 的行。
+    ```{.python .input}
+    df[(df.cc + df.cg >= 80) & (df.POP <= 20000)]
+    ```
+  
+    同样有`.query()`的等价方法。
+    ```{.python .input}
+    df.query("cc + cg >= 80 & POP <= 20000")
+    ```
+
+  > `.loc[]`和`[]`操作符有相同的用法。
+  ```{.python .input}
+  df.loc[df.cc == max(df.cc)] #可以选择cc列最大值的那一行
+  ```
+
+  > `.loc[ , ]`第一个参数接受条件，第二个参数接受我们想要返回的列列表。
+  ```{.python .input}
+  df.loc[(df.cc + df.cg >= 80) & (df.POP <= 20000), ['country', 'year', 'POP']]
+  ```
+
+#### Apply 方法
+
+`.apply()`方法也是一个 pandas 中常用的函数。它可以对每行/列（也可以对基于切片选择特定的列或行）应用一个函数并返回一个`Series`。该函数可以是一些内置函数，如max函数、lambda函数或自定义函数。
+
+- max 函数
+    
+  例：返回`year`, `POP`, `XRAT`, `tcgdp`, `cc`, `cg`列的最大值（当该列有空值时，无法计算最大值，则返回空值）。
+    ```{.python .input}
+    df[['year', 'POP', 'XRAT', 'tcgdp', 'cc', 'cg']].apply(max)
+    ```
+
+- lambda 函数，形式为 `lambda arguments: expression`
+  
+  `arguments`是参数列表，可以指定一个或多个参数，就像定义普通函数一样；`expression`是一个表达式，定义了lambda函数的计算逻辑，通常包括参数，用于返回计算结果。
+
+  lambda函数通常用于一次性的、简单的操作。
+
+  例：对每一行返回自身：
+    ```{.python .input}
+    df.apply(lambda row: row, axis=1)
+    ```
+  axis = 1 设置函数对每一行操作；axis = 0 设置函数对每一列操作；默认axis = 0。
+  
+  例：和`.loc[]`一起使用，进行更高级的数据切片。
+  
+     `.apply()`返回对每一行做条件判断的一系列布尔值，以`[]`操作选择部分列。
+    ```{.python .input}
+    complexCondition = df.apply(
+    lambda row: row.POP > 40000 if row.country in ['Argentina', 'India', 'South Africa'] else row.POP < 20000, 
+    axis=1), ['country', 'year', 'POP', 'XRAT', 'tcgdp']
+    complexCondition
+    ```
+   
+    ```{.python .input}
+    df.loc[complexCondition]
+    ```
+    则返回符合条件的行和列。
+
+#### 数据框更改
+
+更改`DataFrame`的部分值（行、列）在数据清洗过程中十分重要。
+
+- `.where()`方法保留行，并用其他值替代其余行。
+
+  例：找出 POP 大于 20000 的行，其余部分用 `False` 替代（可以自行选择任意值，比如 0 、1 等等）。
+  
+    ```{.python .input}
+    df.where(df.POP >= 20000, False)
+    ```
+  
+- `.loc[]`方法指定想修改的列，并赋值。
+  
+  例：找出 cg 列的最大值，赋值为 1 。
+  
+    ```{.python .input}
+    df.loc[df.cg == max(df.cg), 'cg'] = 1
+    df
+    ```
+
+- `.apply()`函数，根据自定义函数修改行和列。
+   
+  例：将 POP 小于 10000 的修改为 1， 将 XRAT 缩小十倍。
+  
+    ```{.python .input}
+    def update_row(row):
+      # modify POP
+      row.POP = 1 if row.POP<= 10000 else row.POP
+
+      # modify XRAT
+      row.XRAT = row.XRAT / 10
+      return row
+
+    df.apply(update_row, axis=1)
+    ``` 
+
+- `.applymap()`函数，修改数据框中的所有单独元素。
+   
+  例：将 DataFrame 中的数值型元素保留两位小数。
+  
+    ```{.python .input}
+    df.applymap(lambda x : round(x,2) if type(x)!=str else x)
+    ```
+    
+- `del`方法删除指定列。
+  
+  例：删除`ppp`列。
+  
+    ```{.python .input}
+    del df['ppp']
+    df
+    ```
+
+- `df['NewColumn'] = values`增加新列。
+
+  例：增加一列 `GDP percap` 显示人均GDP。
+    ```{.python .input}
+    df['GDP percap'] = df['tcgdp'] / df['POP']
+    df
+    ```
+ 
+
+  
+#### 缺失值处理
+数据缺失情况在现实问题中非常普遍。
+
+- `.isna()`或`df.isnull()`方法查看缺失值。
+  函数返回 DataFrame 每个元素的布尔值，如果为空，为 True，非空则为 False。
+
+  例：通过`.sum()`查看每一列的空缺值计数。
+    ```{.python .input}
+    df.isnull().sum()
+    ```
+
+  
+- `.dropna()` 函数删除有缺失值的行或列。
+
+  具体形式：`df.dropna(axis=0, how='any', inplace=False)`
+  
+   axis：指定要删除的轴。axis=0 表示删除行（默认），axis=1 表示删除列；how：指定删除的条件。how='any' 表示删除包含任何缺失值的行（默认），how='all' 表示只删除所有值都是缺失值的行；inplace：指定是否在原始 DataFrame 上进行修改，默认为 False，表示不修改原始 DataFrame，而是返回一个新的 DataFrame。
+
+    例：删除包含任何缺失值的行。
+    ```{.python .input}
+    df.dropna()
+    ```
+  
+- `.fillna()`函数填补数据框中的缺失值。
+  
+  例：将 DataFrame 中的缺失值用0填充。
+  
+    ```{.python .input}
+    df = df.fillna(0)
+    df
+    ```
+#### 数据排序
+
+- `.sort_values()`方法，按照指定列排序。
+
+  形如`.sort_values(by='column1', ascending = True/False)`，ascending 参数设置为 True 升序，False 为降序。
+  
+  例：按照 POP 列升序排列。
+  ```{.python .input}
+  df = df.sort_values(by='POP', ascending=True)
+  df
+  ```
+
+- `.sort_index()`方法，按照索引 `index` 排序。
+  
+  ```{.python .input}
+  df.sort_index()
+  ```
+
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
