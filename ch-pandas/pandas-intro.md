@@ -1,4 +1,4 @@
-# pandas 入门
+# Pandas 入门
 
 pandas 库是一个流行的 Python 数据处理和分析库，它提供了用于处理和操作数据的强大工具和数据结构。Pandas 的核心数据结构包括 Series（序列）和 DataFrame（数据框），它们使数据的读取、清理、转换和分析变得更加容易。
 
@@ -16,7 +16,7 @@ import pandas as pd
 
 ### Series
 
-在 pandas 中，`Series` 是一种一维的带标签的数组状数据结构。
+在 Pandas 中，`Series` 是一种一维的带标签的数组状数据结构。
 
 我们首先以 4 个数创建一个 `Series`，并命名为 `my series`。
 
@@ -73,7 +73,7 @@ s = pd.Series([1, 2, 3, 4], name = 'my series')
 ### DataFrame
 
 `DataFrame` 可以简单理解为一个 Excel 表，有很多列和很多行。
-`DataFrame` 的列（column）表示一个字段；`DataFrame` 的行（row）表示一条数据。`DataFrame` 常被用来分析像 Excel 这样的、有行和列的表格类数据。Excel 也正在兼容 `DataFrame`，使得用户在 Excel 中进行 pandas 数据处理与分析。
+`DataFrame` 的列（column）表示一个字段；`DataFrame` 的行（row）表示一条数据。`DataFrame` 常被用来分析像 Excel 这样的、有行和列的表格类数据。Excel 也正在兼容 `DataFrame`，使得用户在 Excel 中进行 Pandas 数据处理与分析。
 
 #### 创建 DataFrame
 `DataFrame` 可以来自列表、字典、文件等。
@@ -104,7 +104,7 @@ df = pd.DataFrame(data)
 
 ### 案例：PWT
 
-[PWT](https://www.rug.nl/ggdc/productivity/pwt/) 是一个经济学数据库，用于比较国家和地区之间的宏观经济数据，该数据集包含了各种宏观经济指标，如国内生产总值（GDP）、人均收入、劳动力和资本等因素，以及价格水平、汇率等信息。我们先下载，并使用 pandas 简单探索该数据集。
+[PWT](https://www.rug.nl/ggdc/productivity/pwt/) 是一个经济学数据库，用于比较国家和地区之间的宏观经济数据，该数据集包含了各种宏观经济指标，如国内生产总值（GDP）、人均收入、劳动力和资本等因素，以及价格水平、汇率等信息。我们先下载，并使用 Pandas 简单探索该数据集。
 
 ```{.python .input}
 import urllib.request
@@ -232,7 +232,7 @@ df.info()
 
 #### Apply 方法
 
-`.apply()`方法也是一个 pandas 中常用的函数。它可以对每行/列（也可以对基于切片选择特定的列或行）应用一个函数并返回一个`Series`。该函数可以是一些内置函数，如max函数、lambda函数或自定义函数。
+`.apply()`方法也是一个 Pandas 中常用的函数。它可以对每行/列（也可以对基于切片选择特定的列或行）应用一个函数并返回一个`Series`。该函数可以是一些内置函数，如max函数、lambda函数或自定义函数。
 
 - max 函数
     
@@ -364,23 +364,104 @@ df.info()
     df
     ```
 #### 数据排序
-
+在很多分析任务中，需要按照某个或某些指标对数据进行排序。Pandas 在排序时，根据排序的对象不同可细分为`sort_values`和`sort_index`,与其字面意义相一致，分别代表了对值进行排序和对索引进行排序。
 - `.sort_values()`方法，按照指定列排序。
 
   形如`.sort_values(by='column1', ascending = True/False)`，ascending 参数设置为 True 升序，False 为降序。
   
   例：按照 POP 列升序排列。
   ```{.python .input}
-  df = df.sort_values(by='POP', ascending=True)
+  df = df.sort_values(by='POP', ascending = True)
   df
   ```
+
+  也可以对多个列排序。
+  例： 按照 POP 列和 year 列降序排列。
+  ```{.python .input}
+  df = df.sort_values(by=['POP','year'], ascending = False)
+  df
+  ```  
 
 - `.sort_index()`方法，按照索引 `index` 排序。
   
   ```{.python .input}
   df.sort_index()
   ```
+  
+#### 分组汇总
+分组汇总操作中，会涉及分组变量、度量变量和汇总统计量。Pandas 提供了 groupby 方法进行分组汇总。
 
+- 分组变量
+  在进行分组汇总时，分组变量可以有多个。
+  
+  例如按照 country 和 year 顺序对 tcgdp 查询平均值，此时在 groupby 后接多个分组变量，以列表形式写出。
+  ```{.python .input}
+  df.groupby(['country','year'])[['tcgdp']].mean()
+  ```
+  结果中产生了多重索引，指代相应组的情况。
+  
+
+- 汇总变量
+  在进行分组汇总时，汇总变量也可以有多个。
+
+  例如按照 year 汇总 tcgdp 和 POP，在 groupby 后直接使用`[]`筛选相应列，再接汇总统计量。
+  
+  ```{.python .input}
+  df.groupby(['year'])['tcgdp','POP'].mean()
+  ```
+  
+- 汇总总统计量
+  groupby 后可接的汇总统计量有：
+  > mean - 均值
+  
+  > max - 最大值
+  
+  > min - 最小值
+  
+  > median - 中位数
+  
+  > std - 标准差
+  
+  > mad - 平均绝对偏差
+  
+  > count - 计数
+  
+  > skew - 偏度
+  
+  > quantile - 指定分位数
+
+  这些统计量可以直接接 groupby 对象使用，此外，`agg`方法提供了一次汇总多个统计量的方法。
+  
+  例如汇总各个国家 country 人口 POP 的均值、最大值、最小值。
+
+  ```{.python .input}
+  df.groupby(['country'])['POP'].agg(['mean','min','max'])
+  ```
+
+- 多重索引
+
+  在进行分组汇总操作时，产生的结果并不是常见的二维表数据框，而是具有多重索引的数据框。 Pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表的功能。
+
+  例如按照 country 和 year 顺序对 tcgdp 和 POP 进行分组汇总，汇总统计量为最小值和最大值。
+  ```{.python .input}
+  df.groupby(['country','year'])['tcgdp','POP'].agg(['min','max'])
+  ```
+
+  此时数据框中有两个行索引和两个列索引。需要筛选列时，第一个`[]`筛选第一重列索引，第二个`[]`筛选第二重列索引。
+  
+  例如查询各个国家 country 各年 year 人口 POP 的最小值。
+  ```{.python .input}
+  df_query = df.groupby(['country','year'])['tcgdp','POP'].agg(['min','max'])
+  df_query['POP']['min']
+  ```
+  
+#### 拆分、堆叠列
+
+- 拆分列
+在进行数据处理时，有时会就要将原数据的指定列按照列的内容拆分为新的列。
+
+- 堆叠列
+  
   
 
   
