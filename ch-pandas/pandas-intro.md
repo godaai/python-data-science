@@ -161,8 +161,6 @@ else:
   ```{.python .input}
   df.dtypes
   ```
-  > 修改变量类型
-  > 
 
 - `.columns` 查看数据框列名（变量名）。
   ```{.python .input}
@@ -183,7 +181,62 @@ else:
   print(df.shape[0])#查看数据框行数
   print(df.shape[1])#查看数据框列数
   ```
+  
+#### 数据清洗
+数据清洗工作包括重复观测处理、缺失值处理和异常值处理等，这里主要介绍 Pandas 在重复观测处理和缺失值处理的应用。
 
+- 重复观测处理
+  
+  检测数据集的记录是否存在重复，可以使用duplicated的方法进行验证，但是该方法返回的是数据集每一行的检测结果，即 n 行数据会返回 n 个布尔值。为了能够得到最直接的结果，可以使用 `any` 函数。该函数表示的是在多个条件判断中，只要有一个条件为 True，则 `any` 返回的结果为 True。
+    ```{.python .input}
+    any(df.duplicated())
+    ```
+  如果有重复项，可以通过 `.drop_duplicated()`删除。该方法有 inplace 参数，设置为 True 表示直接在原始数据集上做操作。
+    ```{.python .input}
+    df.drop_duplicated(inplace = True)
+    ```
+    
+- 缺失值处理
+
+  缺失值是指数据集中的某些观测存在遗漏。数据缺失可能有两方面原因，一方面是人为原因，如记录过程中的遗漏、个人隐私而不愿意透露等），另一方面是机器或设备的故障所导致。
+  
+  > `.isna()`或`df.isnull()`方法查看缺失值。
+  
+  函数返回 DataFrame 每个元素的布尔值，如果为空，为 True，非空则为 False。
+
+    例：通过`.sum()`查看每一列的空缺值计数。
+  
+    ```{.python .input}
+    df.isnull().sum()
+    ```
+    
+  一般而言，遇到缺失值时，可以采用三种方法处理，分别是删除法、替换法或插补法。
+  
+  删除法是指当缺失的观测比例非常低（如 5% 以内），直接删除存在缺失的观测，或者当某些变量的缺失比例非常高时（如 85% 以上），直接删除这些缺失的变量。
+  > 可以使用`.dropna()` 函数删除有缺失值的行或列。
+
+    具体形式：`df.dropna(axis=0, how='any', inplace=False)`
+    
+     axis：指定要删除的轴。axis=0 表示删除行（默认），axis=1 表示删除列；how：指定删除的条件。how='any' 表示删除包含任何缺失值的行（默认），how='all' 表示只删除所有值都是缺失值的行；inplace：指定是否在原始 DataFrame 上进行修改，默认为 False，表示不修改原始 DataFrame，而是返回一个新的 DataFrame。
+  
+    例：删除包含任何缺失值的行。
+    ```{.python .input}
+    df.dropna()
+    ```
+  
+   > `.fillna()`函数填补数据框中的缺失值。
+  
+    例：将 DataFrame 中的缺失值用0填充。
+    
+    ```{.python .input}
+    df = df.fillna(0)
+    df
+    ```
+
+    对于时间类型的数据集，可以用`.fillna()`的 `method` 参数，可以接受 `ffill` 和 `bfill`两种值，分别代表前向填充和后向填充，使得数据前后具有连贯性，而一般的独立性样本并不适用该方法。（前向填充是指用缺失值的前一个值替换，而后向填充是指用缺失值的后一个值替换。）
+
+    
+  
 #### 数据切片
 
 实际中，我们常常不是对整体数据进行分析，而是数据中的部分子集。如何根据特定的条件获得所需要的数据是本节的主要内容。
@@ -301,7 +354,7 @@ else:
 
 #### 数据框更改
 
-更改`DataFrame`的部分值（行、列）在数据清洗过程中十分重要。
+更改`DataFrame`的部分值（行、列）在数据分析过程中十分重要。
 
 - `.where()`方法保留行，并用其他值替代其余行。
 
@@ -360,40 +413,16 @@ else:
     df['GDP percap'] = df['tcgdp'] / df['POP']
     df
     ```
- 
+    
+ - `astype()`更改变量数据类型
 
-  
-#### 缺失值处理
-数据缺失情况在现实问题中非常普遍。
+   例：将 country 列改为字符串类型。
 
-- `.isna()`或`df.isnull()`方法查看缺失值。
-  函数返回 DataFrame 每个元素的布尔值，如果为空，为 True，非空则为 False。
-
-  例：通过`.sum()`查看每一列的空缺值计数。
     ```{.python .input}
-    df.isnull().sum()
+    df.country = df.country.astype('str')
     ```
 
   
-- `.dropna()` 函数删除有缺失值的行或列。
-
-  具体形式：`df.dropna(axis=0, how='any', inplace=False)`
-  
-   axis：指定要删除的轴。axis=0 表示删除行（默认），axis=1 表示删除列；how：指定删除的条件。how='any' 表示删除包含任何缺失值的行（默认），how='all' 表示只删除所有值都是缺失值的行；inplace：指定是否在原始 DataFrame 上进行修改，默认为 False，表示不修改原始 DataFrame，而是返回一个新的 DataFrame。
-
-    例：删除包含任何缺失值的行。
-    ```{.python .input}
-    df.dropna()
-    ```
-  
-- `.fillna()`函数填补数据框中的缺失值。
-  
-  例：将 DataFrame 中的缺失值用0填充。
-  
-    ```{.python .input}
-    df = df.fillna(0)
-    df
-    ```
 #### 数据排序
 在很多分析任务中，需要按照某个或某些指标对数据进行排序。Pandas 在排序时，根据排序的对象不同可细分为`sort_values`和`sort_index`,与其字面意义相一致，分别代表了对值进行排序和对索引进行排序。
 - `.sort_values()`方法，按照指定列排序。
@@ -486,9 +515,73 @@ else:
   df_query['POP']['min']
   ```
   
+### 多表操作
+Pandas 提供了关于多表之间的合并和连接操作函数，分别是 `concat()` 和 `merge()` 函数。需要注意的是，对于多表之间的纵向合并，必须保证多表的列数和数据类型一致；对于多表之间的水平扩展，必须保证多表要有共同的匹配字段。
 
+- 合并函数 `concat`
   
+  `pd.concat(objs, axis=0, join='outer', join_axes=None, ignore_index=False, keys=None)`
+
+     objs: 指定需要合并的对象；
+     
+     axis: 指定合并的轴，默认为 0 ，表示合并多个数据的行；如果为 1 ，表示合并多个数据的列；
+     
+     join: 指定合并的方式，默认为 outer，表示合并所有数据，如果改为 inner，表示合并公共部分的数据；
+    
+     join_axes: 合并数据后，指定保留的数据轴；
+    
+     ignore_index: 布尔类型的参数，表示是否忽略原数据集的索引，默认为 False，如果设置为 True，就表示忽略原索引并生成新索引；
+    
+     keys: 为合并后的数据添加新索引，用于区分各个数据部分。
+     
+    ```{.python .input}
+    #构造数据集 df1 和 df2
+    df1 = pd.DataFrame({'name':['张三','李四','王二'],'age':[21, 25,22],'gender':['男','女','男']})
+    df2 = pd.DataFrame({'name':['丁一','赵五'], 'age':[23,22], 'gender':['女','女']})
+    #数据集的纵向合并
+    pd.concat([df1,df2], keys = ['df1','df2'])
+    ```
   
+
+- 连接函数 `merge`
+
+  该函数最大的缺点是每次只能操作两张数据表的连接，如果有 n 张表需要连接，则必须经过 n-1 次的 merge 函数使用。
+
+  `pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False,suffixes=('_x','_y'))`
+
+  left: 指定需要连接的主表；
+
+  right: 指定需要连接的辅表；
+
+  how: 指定连接方式，默认为 inner 连接，还有其他选项，如左连接 left，右连接 right 和外连接 outer；
+
+  on: 指定连接两张表的共同字段；
+
+  left_on: 指定主表中需要连接的共同字段；
+
+  right_on: 指定辅表中需要连接的共同字段；
+
+  left_index: 布尔类型参数，是否将主表中的行索引用作表连接的共同字段，默认为 False；
+
+  right_index: 布尔类型参数，是否将辅表中的行索引用作表连接的共同字段，默认为 False；
+
+  sort: 布尔类型参数，是否对连接后的数据按照共同字段排序，默认为 False;
+
+  suffixes: 如果数据连接的结果中存在重叠的变量名，则使用各自的前缀进行区分。
+  
+     
+    ```{.python .input}
+    #构造数据集 df1 和 df2
+    df3 = pd.DataFrame({'id':[1,2,3,4,5], 'name':['张三','李四','王二','丁一','赵五'],
+                        'age':[27,24,25,23,25],'gender':['男','男','男','女','女']})
+    
+    df4 = pd.DataFrame({'Id':[1,2,2,4,4,4,5], 'score':[83,81,87,75,86,74,88], 
+                       'subject':['科目1','科目1','科目2','科目1','科目2','科目3','科目1']})
+    # 数据连接
+    pd.merge(left = df3, right = df4, how = 'left', left_on = 'id', right_on = 'Id')
+    ```
+  
+
 
   
   
