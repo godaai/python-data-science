@@ -131,35 +131,62 @@ else:
 
 #### 查看数据
 
-使用 `read_csv()` 读取数据。
+- 使用 `read_csv()` 读取数据。
+  
+  ```{.python .input}
+  import pandas as pd
+  df = pd.read_csv(os.path.join(folder_path, "pwt70_w_country_names.csv"))
+  ```
 
-```{.python .input}
-import pandas as pd
-df = pd.read_csv(os.path.join(folder_path, "pwt70_w_country_names.csv"))
-```
+- `head()` 函数可以指定查看前 n 行。
 
-`head()` 函数可以指定查看前 n 行。
+  ```{.python .input}
+  n = 5
+  df.head(n)
+  ```
 
-```{.python .input}
-n = 5
-df.head(n)
-```
+- `tail()` 函数指定查看后 n 行。
+  
+  ```{.python .input}
+  df.tail(n)
+  ```
 
-`tail()` 函数指定查看后 n 行。
+- `info()` 函数可以查看数据基本信息，包括字段类型和非空值计数。
 
-```{.python .input}
-df.tail(n)
-```
+  ```{.python .input}
+  df.info()
+  ```
+  
+- `dtypes`查看各变量数据类型。
+  ```{.python .input}
+  df.dtypes
+  ```
+  > 修改变量类型
+  > 
 
-`info()` 函数可以查看数据基本信息，包括字段类型和非空值计数。
-
-```{.python .input}
-df.info()
-```
+- `.columns` 查看数据框列名（变量名）。
+  ```{.python .input}
+  df.columns
+  ```
+- `.index` 查看数据框行名。
+  ```{.python .input}
+  df.index
+  ```
+  
+- `.shape` 可以查看DataFrame的维度，返回一个 tuple（元组对象），显示数据框的行数和列数。
+  
+  ```{.python .input}
+  df.shape
+  ```
+  因此，可以用索引分别查看数据框的行数和列数。
+  ```{.python .input}
+  print(df.shape[0])#查看数据框行数
+  print(df.shape[1])#查看数据框列数
+  ```
 
 #### 数据切片
 
-实际中，我们常常想要选取感兴趣的数据子集。
+实际中，我们常常不是对整体数据进行分析，而是数据中的部分子集。如何根据特定的条件获得所需要的数据是本节的主要内容。
 
 - 切片选择行
   
@@ -181,7 +208,9 @@ df.info()
 
 - `iloc` 方法选择，形式应为 `.iloc[rows, columns]`
 
-  选择第 2 行到第 5 行（不包括第 5 行），第 0 列到第 4 列（不包括第 4 列）。
+  可以将 i 理解为 integer，即只能指定整数列表。该索引方式从 0 开始，无法取到上限。
+
+  例如：选择第 2 行到第 5 行（不包括第 5 行），第 0 列到第 4 列（不包括第 4 列）。
   ```{.python .input}
   df.iloc[2:5, 0:4]
   ```
@@ -229,6 +258,8 @@ df.info()
   ```{.python .input}
   df.loc[(df.cc + df.cg >= 80) & (df.POP <= 20000), ['country', 'year', 'POP']]
   ```
+
+  注：`iloc`方法不允许使用条件筛选。
 
 #### Apply 方法
 
@@ -455,12 +486,7 @@ df.info()
   df_query['POP']['min']
   ```
   
-#### 拆分、堆叠列
 
-- 拆分列
-在进行数据处理时，有时会就要将原数据的指定列按照列的内容拆分为新的列。
-
-- 堆叠列
   
   
 
