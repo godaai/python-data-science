@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>2.1. pandas 入门 &#8212; Python 数据科学实战 1.0.0 documentation</title>
+    <title>2.1. pandas 简介 &#8212; Python 数据科学实战 1.0.0 documentation</title>
 
     <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script src="../_static/d2l.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. 参考文献" href="../refs.html" />
+    <link rel="next" title="2.2. Series 与 DataFrame" href="series-dataframe.html" />
     <link rel="prev" title="2. pandas" href="index.html" /> 
   </head>
 <body>
@@ -35,7 +35,7 @@
         
         <nav class="mdl-navigation breadcrumb">
             <a class="mdl-navigation__link" href="index.html"><span class="section-number">2. </span>pandas</a><i class="material-icons">navigate_next</i>
-            <a class="mdl-navigation__link is-active"><span class="section-number">2.1. </span>pandas 入门</a>
+            <a class="mdl-navigation__link is-active"><span class="section-number">2.1. </span>pandas 简介</a>
         </nav>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation">
@@ -100,7 +100,10 @@ Show Source
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. pandas</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. pandas 入门</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -138,7 +141,10 @@ Show Source
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. pandas</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. pandas 入门</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -154,806 +160,28 @@ Show Source
         <div class="page-content" role="main">
         
   <div class="section" id="pandas">
-<h1><span class="section-number">2.1. </span>pandas 入门<a class="headerlink" href="#pandas" title="Permalink to this heading">¶</a></h1>
-<p>pandas 库是一个流行的 Python
-数据处理和分析库，它提供了用于处理和操作数据的强大工具和数据结构。Pandas
-的核心数据结构包括 Series（序列）和
-DataFrame（数据框），它们使数据的读取、清理、转换和分析变得更加容易。</p>
+<h1><span class="section-number">2.1. </span>pandas 简介<a class="headerlink" href="#pandas" title="Permalink to this heading">¶</a></h1>
+<p>pandas 库是一个流行的 Python 数据处理和分析库，它提供了名为
+<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的数据结构，<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
+是一个二维表，有很多行和很多列，类似 Excel 表。基于 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
+数据结构，pandas 提供了一系列数据处理和分析函数，是 Python
+数据分析必备的库。pandas 的名字据说来自于 <em>pan</em>el <em>da</em>ta
+（面板数据），面板数据是计量经济学领域的一个最广泛使用的数据结构。可见，pandas
+设计之初主要为经济和金融数据分析服务。</p>
 <div class="section" id="id1">
-<h2><span class="section-number">2.1.1. </span>导入 Pandas<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install pandas -i https://pypi.tuna.tsinghua.edu.cn/simple
+<h2><span class="section-number">2.1.1. </span>安装 pandas<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 安装：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Hide outputs
+!pip install pandas -i https://pypi.tuna.tsinghua.edu.cn/simple
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Looking</span> <span class="ow">in</span> <span class="n">indexes</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pypi</span><span class="o">.</span><span class="n">tuna</span><span class="o">.</span><span class="n">tsinghua</span><span class="o">.</span><span class="n">edu</span><span class="o">.</span><span class="n">cn</span><span class="o">/</span><span class="n">simple</span>
-<span class="n">Requirement</span> <span class="n">already</span> <span class="n">satisfied</span><span class="p">:</span> <span class="n">pandas</span> <span class="ow">in</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">luweizheng</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tpch</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span> <span class="p">(</span><span class="mf">1.4.2</span><span class="p">)</span>
-<span class="n">Requirement</span> <span class="n">already</span> <span class="n">satisfied</span><span class="p">:</span> <span class="n">numpy</span><span class="o">&gt;=</span><span class="mf">1.21.0</span> <span class="ow">in</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">luweizheng</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tpch</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span> <span class="p">(</span><span class="kn">from</span> <span class="nn">pandas</span><span class="p">)</span> <span class="p">(</span><span class="mf">1.21.6</span><span class="p">)</span>
-<span class="n">Requirement</span> <span class="n">already</span> <span class="n">satisfied</span><span class="p">:</span> <span class="n">pytz</span><span class="o">&gt;=</span><span class="mf">2020.1</span> <span class="ow">in</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">luweizheng</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tpch</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span> <span class="p">(</span><span class="kn">from</span> <span class="nn">pandas</span><span class="p">)</span> <span class="p">(</span><span class="mf">2022.7.1</span><span class="p">)</span>
-<span class="n">Requirement</span> <span class="n">already</span> <span class="n">satisfied</span><span class="p">:</span> <span class="n">python</span><span class="o">-</span><span class="n">dateutil</span><span class="o">&gt;=</span><span class="mf">2.8.1</span> <span class="ow">in</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">luweizheng</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tpch</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span> <span class="p">(</span><span class="kn">from</span> <span class="nn">pandas</span><span class="p">)</span> <span class="p">(</span><span class="mf">2.8.2</span><span class="p">)</span>
-<span class="n">Requirement</span> <span class="n">already</span> <span class="n">satisfied</span><span class="p">:</span> <span class="n">six</span><span class="o">&gt;=</span><span class="mf">1.5</span> <span class="ow">in</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">luweizheng</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tpch</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span> <span class="p">(</span><span class="kn">from</span> <span class="nn">python</span><span class="o">-</span><span class="n">dateutil</span><span class="o">&gt;=</span><span class="mf">2.8.1</span><span class="o">-&gt;</span><span class="n">pandas</span><span class="p">)</span> <span class="p">(</span><span class="mf">1.16.0</span><span class="p">)</span>
-</pre></div>
 </div>
+<div class="section" id="id2">
+<h2><span class="section-number">2.1.2. </span>导入 pandas<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>导入 pandas：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="series">
-<h2><span class="section-number">2.1.2. </span>Series<a class="headerlink" href="#series" title="Permalink to this heading">¶</a></h2>
-<p>在 pandas 中，<code class="docutils literal notranslate"><span class="pre">Series</span></code> 是一种一维的带标签的数组状数据结构。</p>
-<p>我们首先以 4 个数创建一个 <code class="docutils literal notranslate"><span class="pre">Series</span></code>，并命名为 <code class="docutils literal notranslate"><span class="pre">my</span> <span class="pre">series</span></code>。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;my series&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">Series</span></code> 是一个数组状数据结构，数组最重要的结构是索引（index）。index
-主要用于标记第几个位置存储什么数据。<code class="docutils literal notranslate"><span class="pre">pd.Series()</span></code> 中不指定
-index参数时，默认从0开始，逐一自增，形如： 0，1，…</p>
-<ul>
-<li><p>Series 支持计算操作。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">*</span> <span class="mi">100</span>
-</pre></div>
-</div>
-</li>
-<li><p>Series 支持描述性统计。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-</div>
-</li>
-<li><p>Series 的索引很灵活。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;number1&#39;</span><span class="p">,</span><span class="s1">&#39;number2&#39;</span><span class="p">,</span><span class="s1">&#39;number3&#39;</span><span class="p">,</span><span class="s1">&#39;number4&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>这时，<code class="docutils literal notranslate"><span class="pre">Series</span></code> 就像一个 Python 中的字典 <code class="docutils literal notranslate"><span class="pre">dict</span></code>，可以使用像
-<code class="docutils literal notranslate"><span class="pre">dict</span></code> 一样的语法来访问 <code class="docutils literal notranslate"><span class="pre">Series</span></code> 中的元素，其中 <code class="docutils literal notranslate"><span class="pre">index</span></code> 相当于
-<code class="docutils literal notranslate"><span class="pre">dict</span></code> 的键 <code class="docutils literal notranslate"><span class="pre">key</span></code>。例如，使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 操作符访问 <code class="docutils literal notranslate"><span class="pre">number1</span></code>
-对应的值。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;number1&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>又例如，使用 <code class="docutils literal notranslate"><span class="pre">in</span></code> 表达式判断某个索引是否在 Series 中。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;number1&#39;</span> <span class="ow">in</span> <span class="n">s</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
-<div class="section" id="dataframe">
-<h2><span class="section-number">2.1.3. </span>DataFrame<a class="headerlink" href="#dataframe" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 可以简单理解为一个 Excel 表，有很多列和很多行。
-<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的列（column）表示一个字段；<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
-的行（row）表示一条数据。<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 常被用来分析像 Excel
-这样的、有行和列的表格类数据。Excel 也正在兼容
-<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>，使得用户在 Excel 中进行 pandas 数据处理与分析。</p>
-<div class="section" id="id2">
-<h3><span class="section-number">2.1.3.1. </span>创建 DataFrame<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 可以来自列表、字典、文件等。</p>
-<ul class="simple">
-<li><p>基于列表创建</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Charlie&#39;</span><span class="p">]</span>
-<span class="n">ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">22</span><span class="p">]</span>
-<span class="n">cities</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">,</span> <span class="s1">&#39;Los Angeles&#39;</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="n">names</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="n">ages</span><span class="p">,</span> <span class="s1">&#39;City&#39;</span><span class="p">:</span> <span class="n">cities</span><span class="p">}</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>基于字典创建</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Column1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;Column2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]}</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>基于文件创建</p></li>
-</ul>
-<p>对于不同类型的文件，使用不同的函数，比如 <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> 读取 csv
-类型的数据。<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv('csv</span> <span class="pre">文件的绝对路径')</span></code> 用来读取一个
-csv 文件，<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span>&#160; <span class="pre">pd.read_excel('excel</span> <span class="pre">文件的绝对路径')</span></code> 用来读取一个
-excel 文件</p>
-<blockquote>
-<div><p>注：pd.read_csv 默认分隔符为逗号，pd.read_table
-默认分隔符为换行符。它们还支持许多其他参数，可以使用 <code class="docutils literal notranslate"><span class="pre">help()</span></code>
-函数查看。 例：help(pd.read_csv)</p>
-</div></blockquote>
-</div>
-</div>
-<div class="section" id="pwt">
-<h2><span class="section-number">2.1.4. </span>案例：PWT<a class="headerlink" href="#pwt" title="Permalink to this heading">¶</a></h2>
-<p><a class="reference external" href="https://www.rug.nl/ggdc/productivity/pwt/">PWT</a>
-是一个经济学数据库，用于比较国家和地区之间的宏观经济数据，该数据集包含了各种宏观经济指标，如国内生产总值（GDP）、人均收入、劳动力和资本等因素，以及价格水平、汇率等信息。我们先下载，并使用
-pandas 简单探索该数据集。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-
-<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;./data/pwt&quot;</span><span class="p">)</span>
-<span class="n">download_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.rug.nl/ggdc/docs/pwt70_06032011version.zip&quot;</span>
-<span class="n">file_name</span> <span class="o">=</span> <span class="n">download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
-    <span class="c1"># 创建文件夹</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹不存在，已创建。&quot;</span><span class="p">)</span>
-
-    <span class="n">zip_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
-
-    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">download_url</span><span class="p">,</span> <span class="n">zip_file_path</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
-        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;数据已下载并解压缩。&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹已存在，无需操作。&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span>文件夹已存在，无需操作。
-</pre></div>
-</div>
-<div class="section" id="id3">
-<h3><span class="section-number">2.1.4.1. </span>查看数据<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> 读取数据。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s2">&quot;pwt70_w_country_names.csv&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">head()</span></code> 函数可以指定查看前 n 行。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</pre></div>
-</div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>country</th>
-      <th>isocode</th>
-      <th>year</th>
-      <th>POP</th>
-      <th>XRAT</th>
-      <th>Currency_Unit</th>
-      <th>ppp</th>
-      <th>tcgdp</th>
-      <th>cgdp</th>
-      <th>cgdp2</th>
-      <th>...</th>
-      <th>kg</th>
-      <th>ki</th>
-      <th>openk</th>
-      <th>rgdpeqa</th>
-      <th>rgdpwok</th>
-      <th>rgdpl2wok</th>
-      <th>rgdpl2pe</th>
-      <th>rgdpl2te</th>
-      <th>rgdpl2th</th>
-      <th>rgdptt</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1950</td>
-      <td>8150.368</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1951</td>
-      <td>8284.473</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1952</td>
-      <td>8425.333</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1953</td>
-      <td>8573.217</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1954</td>
-      <td>8728.408</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 37 columns</p>
-</div><p><code class="docutils literal notranslate"><span class="pre">tail()</span></code> 函数指定查看后 n 行。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</pre></div>
-</div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>country</th>
-      <th>isocode</th>
-      <th>year</th>
-      <th>POP</th>
-      <th>XRAT</th>
-      <th>Currency_Unit</th>
-      <th>ppp</th>
-      <th>tcgdp</th>
-      <th>cgdp</th>
-      <th>cgdp2</th>
-      <th>...</th>
-      <th>kg</th>
-      <th>ki</th>
-      <th>openk</th>
-      <th>rgdpeqa</th>
-      <th>rgdpwok</th>
-      <th>rgdpl2wok</th>
-      <th>rgdpl2pe</th>
-      <th>rgdpl2te</th>
-      <th>rgdpl2th</th>
-      <th>rgdptt</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>11395</th>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>2005</td>
-      <td>11639.470</td>
-      <td>2.236364e+01</td>
-      <td>Zimbabwe Dollar</td>
-      <td>39.482829</td>
-      <td>1968.205961</td>
-      <td>169.097559</td>
-      <td>184.183929</td>
-      <td>...</td>
-      <td>6.995770</td>
-      <td>9.376272</td>
-      <td>89.399427</td>
-      <td>214.739197</td>
-      <td>418.970867</td>
-      <td>418.970867</td>
-      <td>NaN</td>
-      <td>390.907086</td>
-      <td>NaN</td>
-      <td>169.097559</td>
-    </tr>
-    <tr>
-      <th>11396</th>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>2006</td>
-      <td>11544.326</td>
-      <td>1.643606e+02</td>
-      <td>Zimbabwe Dollar</td>
-      <td>384.899651</td>
-      <td>2132.305773</td>
-      <td>184.705956</td>
-      <td>192.953943</td>
-      <td>...</td>
-      <td>7.648020</td>
-      <td>14.986823</td>
-      <td>81.697014</td>
-      <td>217.543648</td>
-      <td>424.754259</td>
-      <td>407.262097</td>
-      <td>NaN</td>
-      <td>377.352394</td>
-      <td>NaN</td>
-      <td>179.368685</td>
-    </tr>
-    <tr>
-      <th>11397</th>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>2007</td>
-      <td>11443.187</td>
-      <td>9.675781e+03</td>
-      <td>Zimbabwe Dollar</td>
-      <td>38583.323960</td>
-      <td>2107.937100</td>
-      <td>184.208918</td>
-      <td>198.215361</td>
-      <td>...</td>
-      <td>8.387106</td>
-      <td>15.787322</td>
-      <td>84.483374</td>
-      <td>202.707080</td>
-      <td>396.486201</td>
-      <td>376.163064</td>
-      <td>NaN</td>
-      <td>345.764991</td>
-      <td>NaN</td>
-      <td>173.113448</td>
-    </tr>
-    <tr>
-      <th>11398</th>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>2008</td>
-      <td>11350.000</td>
-      <td>6.715424e+09</td>
-      <td>Zimbabwe Dollar</td>
-      <td>38723.957740</td>
-      <td>1772.209867</td>
-      <td>156.141839</td>
-      <td>162.112294</td>
-      <td>...</td>
-      <td>7.685312</td>
-      <td>13.444449</td>
-      <td>85.117130</td>
-      <td>174.178806</td>
-      <td>343.159758</td>
-      <td>332.649861</td>
-      <td>NaN</td>
-      <td>302.945712</td>
-      <td>NaN</td>
-      <td>142.329054</td>
-    </tr>
-    <tr>
-      <th>11399</th>
-      <td>Zimbabwe</td>
-      <td>ZWE</td>
-      <td>2009</td>
-      <td>11383.000</td>
-      <td>1.400000e+17</td>
-      <td>Zimbabwe Dollar</td>
-      <td>40289.958990</td>
-      <td>1906.049843</td>
-      <td>167.447056</td>
-      <td>174.419700</td>
-      <td>...</td>
-      <td>7.905525</td>
-      <td>14.743667</td>
-      <td>83.749534</td>
-      <td>182.613004</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>314.171069</td>
-      <td>NaN</td>
-      <td>151.435285</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 37 columns</p>
-</div><p><code class="docutils literal notranslate"><span class="pre">info()</span></code> 函数可以查看数据基本信息，包括字段类型和非空值计数。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 11400 entries, 0 to 11399
-Data columns (total 37 columns):
- #   Column         Non-Null Count  Dtype
----  ------         --------------  -----
- 0   country        11400 non-null  object
- 1   isocode        11400 non-null  object
- 2   year           11400 non-null  int64
- 3   POP            11398 non-null  float64
- 4   XRAT           10163 non-null  float64
- 5   Currency_Unit  10163 non-null  object
- 6   ppp            8745 non-null   float64
- 7   tcgdp          8745 non-null   float64
- 8   cgdp           8745 non-null   float64
- 9   cgdp2          8745 non-null   float64
- 10  cda2           8745 non-null   float64
- 11  cc             8745 non-null   float64
- 12  cg             8745 non-null   float64
- 13  ci             8745 non-null   float64
- 14  p              8745 non-null   float64
- 15  p2             8745 non-null   float64
- 16  pc             8745 non-null   float64
- 17  pg             8745 non-null   float64
- 18  pi             8745 non-null   float64
- 19  openc          8745 non-null   float64
- 20  cgnp           8305 non-null   float64
- 21  y              8745 non-null   float64
- 22  y2             8745 non-null   float64
- 23  rgdpl          8725 non-null   float64
- 24  rgdpl2         8725 non-null   float64
- 25  rgdpch         8725 non-null   float64
- 26  kc             8725 non-null   float64
- 27  kg             8725 non-null   float64
- 28  ki             8725 non-null   float64
- 29  openk          8725 non-null   float64
- 30  rgdpeqa        8555 non-null   float64
- 31  rgdpwok        8177 non-null   float64
- 32  rgdpl2wok      8177 non-null   float64
- 33  rgdpl2pe       845 non-null    float64
- 34  rgdpl2te       5399 non-null   float64
- 35  rgdpl2th       2274 non-null   float64
- 36  rgdptt         8745 non-null   float64
-dtypes: float64(33), int64(1), object(3)
-memory usage: 3.2+ MB
-</pre></div>
-</div>
-</div>
-<div class="section" id="id4">
-<h3><span class="section-number">2.1.4.2. </span>数据切片<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
-<p>实际中，我们常常想要选取感兴趣的数据子集。</p>
-<ul class="simple">
-<li><p>切片选择行</p></li>
-</ul>
-<p>从第 2 行到第 5 行（不包括第 5 行）：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
-</pre></div>
-</div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>country</th>
-      <th>isocode</th>
-      <th>year</th>
-      <th>POP</th>
-      <th>XRAT</th>
-      <th>Currency_Unit</th>
-      <th>ppp</th>
-      <th>tcgdp</th>
-      <th>cgdp</th>
-      <th>cgdp2</th>
-      <th>...</th>
-      <th>kg</th>
-      <th>ki</th>
-      <th>openk</th>
-      <th>rgdpeqa</th>
-      <th>rgdpwok</th>
-      <th>rgdpl2wok</th>
-      <th>rgdpl2pe</th>
-      <th>rgdpl2te</th>
-      <th>rgdpl2th</th>
-      <th>rgdptt</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1952</td>
-      <td>8425.333</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1953</td>
-      <td>8573.217</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1954</td>
-      <td>8728.408</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>3 rows × 37 columns</p>
-</div><ul class="simple">
-<li><p>列名索引选择列</p></li>
-</ul>
-<p>要选择列，我们可以传递一个列表，其中包含以字符串表示的所需列的名称。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;tcgdp&#39;</span><span class="p">]]</span>
-</pre></div>
-</div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>country</th>
-      <th>tcgdp</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Afghanistan</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Afghanistan</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Afghanistan</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Afghanistan</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Afghanistan</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>11395</th>
-      <td>Zimbabwe</td>
-      <td>1968.205961</td>
-    </tr>
-    <tr>
-      <th>11396</th>
-      <td>Zimbabwe</td>
-      <td>2132.305773</td>
-    </tr>
-    <tr>
-      <th>11397</th>
-      <td>Zimbabwe</td>
-      <td>2107.937100</td>
-    </tr>
-    <tr>
-      <th>11398</th>
-      <td>Zimbabwe</td>
-      <td>1772.209867</td>
-    </tr>
-    <tr>
-      <th>11399</th>
-      <td>Zimbabwe</td>
-      <td>1906.049843</td>
-    </tr>
-  </tbody>
-</table>
-<p>11400 rows × 2 columns</p>
-</div><p>如果只选取一列，df[‘country’] 等价于 <code class="docutils literal notranslate"><span class="pre">df.country</span></code>。</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">iloc</span></code> 方法选择，形式应为 <code class="docutils literal notranslate"><span class="pre">.iloc[rows,</span> <span class="pre">columns]</span></code></p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
-</pre></div>
-</div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>country</th>
-      <th>isocode</th>
-      <th>year</th>
-      <th>POP</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1952</td>
-      <td>8425.333</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1953</td>
-      <td>8573.217</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Afghanistan</td>
-      <td>AFG</td>
-      <td>1954</td>
-      <td>8728.408</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
 </div>
 </div>
 
@@ -966,18 +194,9 @@ memory usage: 3.2+ MB
       <span class="caption-text">Table Of Contents</span>
     </p>
     <ul>
-<li><a class="reference internal" href="#">2.1. pandas 入门</a><ul>
-<li><a class="reference internal" href="#id1">2.1.1. 导入 Pandas</a></li>
-<li><a class="reference internal" href="#series">2.1.2. Series</a></li>
-<li><a class="reference internal" href="#dataframe">2.1.3. DataFrame</a><ul>
-<li><a class="reference internal" href="#id2">2.1.3.1. 创建 DataFrame</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pwt">2.1.4. 案例：PWT</a><ul>
-<li><a class="reference internal" href="#id3">2.1.4.1. 查看数据</a></li>
-<li><a class="reference internal" href="#id4">2.1.4.2. 数据切片</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">2.1. pandas 简介</a><ul>
+<li><a class="reference internal" href="#id1">2.1.1. 安装 pandas</a></li>
+<li><a class="reference internal" href="#id2">2.1.2. 导入 pandas</a></li>
 </ul>
 </li>
 </ul>
@@ -995,11 +214,11 @@ memory usage: 3.2+ MB
             <div>2. pandas</div>
          </div>
      </a>
-     <a id="button-next" href="../refs.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+     <a id="button-next" href="series-dataframe.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
         <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>
-            <div>3. 参考文献</div>
+            <div>2.2. Series 与 DataFrame</div>
         </div>
      </a>
   </div>
