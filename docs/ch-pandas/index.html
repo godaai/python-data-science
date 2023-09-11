@@ -26,7 +26,7 @@
     <script src="../_static/d2l.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.1. pandas 入门" href="pandas-intro.html" />
+    <link rel="next" title="2.1. pandas 简介" href="pandas-intro.html" />
     <link rel="prev" title="1.1. 本书主要内容" href="../ch-python-lang/outline.html" /> 
   </head>
 <body>
@@ -99,7 +99,10 @@ Show Source
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. pandas</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 入门</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -137,7 +140,10 @@ Show Source
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. pandas</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 入门</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -156,11 +162,32 @@ Show Source
 <h1><span class="section-number">2. </span>pandas<a class="headerlink" href="#pandas" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="pandas-intro.html">2.1. pandas 入门</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html#id1">2.1.1. 导入 Pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html#series">2.1.2. Series</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html#dataframe">2.1.3. DataFrame</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html#pwt">2.1.4. 案例：PWT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html#id1">2.1.1. 安装 pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html#id2">2.1.2. 导入 pandas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html#series">2.2.1. Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html#dataframe">2.2.2. DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html#id2">2.2.3. 创建 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html#pwt">2.2.4. 案例：PWT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html#id3">2.2.5. 查看数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html#id2">2.3.1. 主要方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html#id3">2.3.2. 使用 [] 进行选择</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html#iloc-loc">2.3.3. iloc 或者 loc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html#query">2.3.4. query</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html#id2">2.4.1. 处理重复值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html#id3">2.4.2. 处理缺失值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html#apply">2.4.3. Apply 函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html#dataframe">2.4.4. 更改 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html#id4">2.4.5. 数据排序</a></li>
 </ul>
 </li>
 </ul>
@@ -187,7 +214,7 @@ Show Source
          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
         <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>
-            <div>2.1. pandas 入门</div>
+            <div>2.1. pandas 简介</div>
         </div>
      </a>
   </div>
