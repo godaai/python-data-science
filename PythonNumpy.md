@@ -1,29 +1,20 @@
 # Numpy库
 
 ## 1.概述
-
-Numpy库主要作于科学计算，可用于对多维数组执行计算，库中提供了大量的库函数和操作，内置运算功能，包含实用的线性代数、傅里叶变换和随机数生成函数。Numpy库是scipy/pandas等库的基础。
-
-Numpy库提供了两种基本的对象：ndarray（N-dimensional Array Object）和ufunc（Universal Function Object）。
-
-ndarray是储存单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。
+ Numpy 库主要作于科学计算，可用于对多维数组执行计算，库中提供了大量的库函数和操作，内置运算功能，包含实用的线性代数、傅里叶变换和随机数生成函数。Numpy库是scipy/pandas等库的基础。
+ Numpy 库提供了两种基本的对象： ndarray （N-dimensional Array Object）和 ufunc （Universal Function Object）。
+ ndarray 是储存单一数据类型的多维数组， ufunc 是能够对数组进行处理的函数。
 
 ## 2.常见用法
-
 ### 导入包
-
-
 ```python
 import numpy as np
-#导入numpy库，为简化代码简称为np
+#导入 numpy 库，为简化代码简称为np
 ```
 
 ### 创建数组
-
 #### np.array()函数
-
-array 函数接受任何序列型参数，如列表、元组等。但是数组中有限的元素类型必须是一致的。
-
+ array 函数接受任何序列型参数，如列表、元组等。但是数组中有限的元素类型必须是一致的。
 
 ```python
 #通过 array 函数可以创建一个指定类型的数组，只要在括号中传入一个参数，参数类型就是数组的类型
@@ -32,11 +23,8 @@ ar2 = np.array((1,2,3,4)) #元组tuple
 ```
 
 ### 使用NumPy中函数创建数组
-
 #### np.arange()函数
-
-arange函数可用于特殊数组的创建，类似于range(),在给定间隔内放回均匀间隔的数值
-
+ arange 函数可用于特殊数组的创建，类似于 range() ,在给定间隔内放回均匀间隔的数值
 
 ```python
 np.arange(10)
@@ -51,21 +39,12 @@ np.arange(10)
 
 #### np.linspace()函数
 
-linspace函数用于生成放回在间隔[start,stop]上计算num个均匀间隔的样本，也就是创建一个等差数列构成的一维数组。
-
-
-
-常见参数：linspace(start,stop,num= ,endpoint=True/False)
-
-
-
-```python
-#start：起始值
-#stop：终止值
-#num：数列的个数
-#endpoint：默认值为True，来决定是否包含终止值，如果为真则包含；否则不包括在内。
-```
-
+ linspace 函数用于生成放回在间隔 [start,stop] 上计算 num 个均匀间隔的样本，也就是创建一个等差数列构成的一维数组。
+常见参数： linspace(start,stop,num= ,endpoint=True/False) 
+ start ： 起始值
+ stop ： 终止值
+ num ： 数列的个数
+ endpoint ： 默认值为True，来决定是否包含终止值，如果为真则包含；否则不包括在内。
 
 ```python
 a = np.linspace(1,5,5) #生成在1和5之间5个均匀间隔的数列，赋值为a
@@ -76,7 +55,6 @@ print(a) #显示该数列
     
 
 #### np.concatenate()函数
-
 将两个或者多个数组合并成一个新数组
 
 
@@ -102,8 +80,7 @@ c
 
 
 #### np.ones()函数
-
-np.ones(shape)根据shape生成一个全1数组，shape是元组类型
+ np.ones(shape) 根据 shape 生成一个全1数组， shape 是元组类型
 
 
 ```python
@@ -130,7 +107,7 @@ np.ones((3,3,6)) #生成3个元素，每个元素下有3个维度，每个维度
 
 ##### np.ones_like(a)
 
-根据数组a的形状生成一个全1数组
+根据数组 a 的形状生成一个全1数组
 
 
 ```python
@@ -146,7 +123,7 @@ np.ones_like(a)
 
 #### np.zeros()函数
 
-np.zeros(shape)根据shape生成一个全0数组，shape是元组类型
+ np.zeros(shape) 根据 shape 生成一个全0数组， shape 是元组类型
 
 
 ```python
@@ -173,7 +150,7 @@ np.zeros((3,3,6)) #生成3个元素，每个元素下有3个维度，每个维�
 
 ##### np.zeros_like(a)
 
-根据数组a的形状生成一个全0数组
+根据数组 a 的形状生成一个全0数组
 
 
 ```python
@@ -189,7 +166,7 @@ np.zeros_like(a)
 
 #### np.full()函数
 
-np.full(shape,val)根据shape生成一个数组，每个元素值都是val
+ np.full(shape,val) 根据 shape 生成一个数组，每个元素值都是 val 
 
 
 ```python
@@ -215,7 +192,7 @@ np.full((3,3,6),6)#生成3个元素，每个元素下有3个维度，每个维�
 
 ##### np.full_like(a,val)
 
-根据数组a的形状生成一个数组,元素值全为val
+根据数组 a 的形状生成一个数组,元素值全为 val 
 
 
 ```python
@@ -231,9 +208,9 @@ np.full_like(a,6)
 
 #### np.eye()函数
 
-np.eye(n)创建一个n*n单位矩阵，对角线为1，其余为0
+np.eye(n) 创建一个 n*n 单位矩阵，对角线为1，其余为0
 
-
+ 
 ```python
 np.eye(5)
 ```
@@ -350,7 +327,7 @@ ar #显示原数组ar
 
 ##### .reshape()函数
 
-.reshape(shape)函数，不改变数组的元素，返回一个shape形状的数组
+ .reshape(shape) 函数，不改变数组的元素，返回一个 shape 形状的数组
 
 
 ```python
@@ -381,7 +358,7 @@ ar #显示原数组，结果显示未改变原数组
 
 ##### .flatten()函数
 
-.flatten()函数，对数组进行降维，返回折叠后的一个一维数组
+ .flatten() 函数，对数组进行降维，返回折叠后的一个一维数组
 
 
 ```python
@@ -413,7 +390,7 @@ ar #显示原数组，结果显示未改变原数组
 
 ##### .resize()函数
 
-.resize(shape)函数，返回一个shape形状的数组，功能与.reshape()函数一致，但是修改原数组。
+ .resize(shape) 函数，返回一个 shape 形状的数组，功能与 .reshape() 函数一致，但是修改原数组。
 
 （提示：当新数组可容纳数据少于原数据，按照原数据中行列顺讯排列shape个数据；如果多于，则新数组会按照原数组中的数据顺序进行填空）
 
@@ -461,7 +438,7 @@ ar.dtype #元素类型
 
 #### .astype()函数
 
-.astype(new_type)函数，对数组进行类型变化，基于对原始数据的拷贝创建一个新的数组。
+ .astype(new_type) 函数，对数组进行类型变化，基于对原始数据的拷贝创建一个新的数组。
 
 
 ```python
@@ -491,7 +468,7 @@ new_ar.dtype #查看新数组元素类型
 
 ### ndarray数组向列表转换
 
-列表作为Python中原始的数据类型，虽然运算速度慢于numpy，但是在与原生Python语言相适应的程序中经常做此转换
+列表作为 Python 中原始的数据类型，虽然运算速度慢于 numpy ，但是在与原生 Python 语言相适应的程序中经常做此转换
 
 
 ```python
