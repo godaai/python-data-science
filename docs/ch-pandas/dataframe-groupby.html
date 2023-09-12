@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>2.5. 分组汇总 &#8212; Python 数据科学实战 1.0.0 documentation</title>
+
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/d2l.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/d2l.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. 参考文献" href="../refs.html" />
+    <link rel="prev" title="2.4. 数据处理" href="data-preprocessing.html" /> 
+  </head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
+    <div class="mdl-layout__header-row">
+        
+        <nav class="mdl-navigation breadcrumb">
+            <a class="mdl-navigation__link" href="index.html"><span class="section-number">2. </span>pandas</a><i class="material-icons">navigate_next</i>
+            <a class="mdl-navigation__link is-active"><span class="section-number">2.5. </span>分组汇总</a>
+        </nav>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+        
+<form class="form-inline pull-sm-right" action="../search.html" method="get">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon"  for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="q"  id="waterfall-exp" placeholder="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </div>
+      </div>
+      <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
+      Quick search
+      </div>
+</form>
+        
+<a id="button-show-source"
+    class="mdl-button mdl-js-button mdl-button--icon"
+    href="../_sources/ch-pandas/dataframe-groupby.rst.txt" rel="nofollow">
+  <i class="material-icons">code</i>
+</a>
+<div class="mdl-tooltip" data-mdl-for="button-show-source">
+Show Source
+</div>
+        </nav>
+    </div>
+    <div class="mdl-layout__header-row header-links">
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+          
+              <a  class="mdl-navigation__link" href="https://github.com/py-101/python-data-science">
+                  <i class="fab fa-github"></i>
+                  GitHub
+              </a>
+      </nav>
+    </div>
+</header><header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../index.html">
+              <span class="title-text">
+                  Python 数据科学实战
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.1. 本书主要内容</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. pandas</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.5. 分组汇总</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+        <main class="mdl-layout__content" tabIndex="0">
+
+	<script type="text/javascript" src="../_static/sphinx_materialdesign_theme.js "></script>
+    <header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../index.html">
+              <span class="title-text">
+                  Python 数据科学实战
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.1. 本书主要内容</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. pandas</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.5. 分组汇总</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+
+    <div class="document">
+        <div class="page-content" role="main">
+        
+  <div class="section" id="dataframe-groupby">
+<span id="id1"></span><h1><span class="section-number">2.5. </span>分组汇总<a class="headerlink" href="#dataframe-groupby" title="Permalink to this heading">¶</a></h1>
+<p>实际的数据分析中，经常需要对某一类数据进行统计分析。比如，假如我们拥有全国所有人的身高和体重数据，我们想按照省份分组，统计每个省的平均身高和平均体重，这时候就需要使用分组操作。pandas
+提供了 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 函数进行类似的分组汇总操作。:numref:<code class="docutils literal notranslate"><span class="pre">groupby-img</span></code>
+计算平均身高的分组汇总流程，主要包括两部分：分组与汇总。其中分组阶段将同一类的内容归结到相同的组中；汇总阶段将所关心的数据进行计算，比如求和、求平均等。</p>
+<p>按哪些字段进行分组，这些字段又被成为
+<strong>分组变量</strong>。对其他字段进行汇总，其他汇总字段被成为
+<strong>汇总变量</strong>。对汇总变量进行计算，被称为 <strong>汇总统计量</strong>。</p>
+<div class="figure align-default" id="id6">
+<span id="groupby-img"></span><a class="reference internal image-reference" href="../_images/groupby.svg"><img alt="../_images/groupby.svg" src="../_images/groupby.svg" width="800px" /></a>
+<p class="caption"><span class="caption-number">图2.5.1 </span><span class="caption-text">分组与汇总</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">2.5.1. </span>分组变量<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>在进行分组汇总时，分组变量可以有一个或多个。</p>
+<p>例如，按照 <code class="docutils literal notranslate"><span class="pre">country</span></code> 和 <code class="docutils literal notranslate"><span class="pre">year</span></code> 分组，并对 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code>
+汇总求平均值，此时在 <code class="docutils literal notranslate"><span class="pre">groupby</span></code>
+后接多个分组变量，以列表形式写出。或者是
+<code class="docutils literal notranslate"><span class="pre">.groupby(by=['country','year'])</span></code>。<code class="docutils literal notranslate"><span class="pre">.groupby</span></code>
+之后要接上所需要汇总的字段，这个例子是
+<code class="docutils literal notranslate"><span class="pre">tcgdp</span></code>。最后要接上所需要进行的汇总计算，比如
+<code class="docutils literal notranslate"><span class="pre">.mean()</span></code>。计算结果中产生了多个索引，本例中是 <code class="docutils literal notranslate"><span class="pre">country</span></code> 和
+<code class="docutils literal notranslate"><span class="pre">year</span></code>，指代相应组的情况。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>tcgdp</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Afghanistan</th>
+      <th>1950</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1951</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1952</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1953</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1954</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">Zimbabwe</th>
+      <th>2005</th>
+      <td>1968.205961</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>2132.305773</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>2107.937100</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>1772.209867</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>1906.049843</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 1 columns</p>
+</div></div>
+<div class="section" id="id3">
+<h2><span class="section-number">2.5.2. </span>汇总变量<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>在进行分组汇总时，汇总变量也可以有一个或多个。</p>
+<p>例如按照 <code class="docutils literal notranslate"><span class="pre">year</span></code> 汇总 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code> 和 <code class="docutils literal notranslate"><span class="pre">POP</span></code>，在 <code class="docutils literal notranslate"><span class="pre">.groupby</span></code>
+后直接使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 筛选相应列，再接汇总统计量。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">4</span><span class="n">n</span><span class="o">/</span><span class="n">v40br47s46ggrjm9bdm64lwh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_99018</span><span class="o">/</span><span class="mf">459214562.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span> <span class="ne">FutureWarning</span><span class="p">:</span> <span class="n">Indexing</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">keys</span> <span class="p">(</span><span class="n">implicitly</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">keys</span><span class="p">)</span> <span class="n">will</span> <span class="n">be</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">use</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">instead</span><span class="o">.</span>
+  <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tcgdp</th>
+      <th>POP</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1950</th>
+      <td>13660.635432</td>
+      <td>16325.314772</td>
+    </tr>
+    <tr>
+      <th>1951</th>
+      <td>14146.954624</td>
+      <td>16548.830286</td>
+    </tr>
+    <tr>
+      <th>1952</th>
+      <td>15534.601854</td>
+      <td>16730.487389</td>
+    </tr>
+    <tr>
+      <th>1953</th>
+      <td>16030.140136</td>
+      <td>17019.548668</td>
+    </tr>
+    <tr>
+      <th>1954</th>
+      <td>15906.385842</td>
+      <td>17326.304137</td>
+    </tr>
+    <tr>
+      <th>1955</th>
+      <td>16351.783896</td>
+      <td>17657.801874</td>
+    </tr>
+    <tr>
+      <th>1956</th>
+      <td>17522.921135</td>
+      <td>17999.434226</td>
+    </tr>
+    <tr>
+      <th>1957</th>
+      <td>18746.775199</td>
+      <td>18364.700442</td>
+    </tr>
+    <tr>
+      <th>1958</th>
+      <td>19866.755209</td>
+      <td>18730.439042</td>
+    </tr>
+    <tr>
+      <th>1959</th>
+      <td>20371.277226</td>
+      <td>19043.260395</td>
+    </tr>
+    <tr>
+      <th>1960</th>
+      <td>14977.099085</td>
+      <td>19242.437274</td>
+    </tr>
+    <tr>
+      <th>1961</th>
+      <td>15214.093132</td>
+      <td>19423.141142</td>
+    </tr>
+    <tr>
+      <th>1962</th>
+      <td>16145.511804</td>
+      <td>19760.533626</td>
+    </tr>
+    <tr>
+      <th>1963</th>
+      <td>17253.196292</td>
+      <td>20233.695226</td>
+    </tr>
+    <tr>
+      <th>1964</th>
+      <td>18782.800101</td>
+      <td>20719.860558</td>
+    </tr>
+    <tr>
+      <th>1965</th>
+      <td>20176.152121</td>
+      <td>21182.282832</td>
+    </tr>
+    <tr>
+      <th>1966</th>
+      <td>21961.204688</td>
+      <td>21655.463121</td>
+    </tr>
+    <tr>
+      <th>1967</th>
+      <td>23418.473725</td>
+      <td>22121.536947</td>
+    </tr>
+    <tr>
+      <th>1968</th>
+      <td>25702.641234</td>
+      <td>22606.150837</td>
+    </tr>
+    <tr>
+      <th>1969</th>
+      <td>28697.931646</td>
+      <td>23113.133937</td>
+    </tr>
+    <tr>
+      <th>1970</th>
+      <td>25592.960652</td>
+      <td>23618.829389</td>
+    </tr>
+    <tr>
+      <th>1971</th>
+      <td>28178.816652</td>
+      <td>24137.869711</td>
+    </tr>
+    <tr>
+      <th>1972</th>
+      <td>31065.456132</td>
+      <td>24644.483005</td>
+    </tr>
+    <tr>
+      <th>1973</th>
+      <td>35065.397810</td>
+      <td>25140.115900</td>
+    </tr>
+    <tr>
+      <th>1974</th>
+      <td>39204.549554</td>
+      <td>25623.884663</td>
+    </tr>
+    <tr>
+      <th>1975</th>
+      <td>43423.381841</td>
+      <td>26088.471411</td>
+    </tr>
+    <tr>
+      <th>1976</th>
+      <td>48300.823210</td>
+      <td>26535.470116</td>
+    </tr>
+    <tr>
+      <th>1977</th>
+      <td>53742.382390</td>
+      <td>26979.055474</td>
+    </tr>
+    <tr>
+      <th>1978</th>
+      <td>60599.360302</td>
+      <td>27418.046916</td>
+    </tr>
+    <tr>
+      <th>1979</th>
+      <td>68524.511284</td>
+      <td>27873.890479</td>
+    </tr>
+    <tr>
+      <th>1980</th>
+      <td>76299.636694</td>
+      <td>28329.849105</td>
+    </tr>
+    <tr>
+      <th>1981</th>
+      <td>84839.459476</td>
+      <td>28790.876000</td>
+    </tr>
+    <tr>
+      <th>1982</th>
+      <td>90562.026563</td>
+      <td>29287.531784</td>
+    </tr>
+    <tr>
+      <th>1983</th>
+      <td>96863.034920</td>
+      <td>29795.689879</td>
+    </tr>
+    <tr>
+      <th>1984</th>
+      <td>105519.346396</td>
+      <td>30288.007526</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>112897.453765</td>
+      <td>30791.765868</td>
+    </tr>
+    <tr>
+      <th>1986</th>
+      <td>117703.162810</td>
+      <td>31313.561847</td>
+    </tr>
+    <tr>
+      <th>1987</th>
+      <td>126084.211323</td>
+      <td>31863.784021</td>
+    </tr>
+    <tr>
+      <th>1988</th>
+      <td>135934.150908</td>
+      <td>32417.290021</td>
+    </tr>
+    <tr>
+      <th>1989</th>
+      <td>144470.482552</td>
+      <td>32964.028537</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>156581.796076</td>
+      <td>33516.168453</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>164913.740161</td>
+      <td>34055.531837</td>
+    </tr>
+    <tr>
+      <th>1992</th>
+      <td>171001.831153</td>
+      <td>34567.649100</td>
+    </tr>
+    <tr>
+      <th>1993</th>
+      <td>171397.253122</td>
+      <td>35065.424347</td>
+    </tr>
+    <tr>
+      <th>1994</th>
+      <td>180851.311282</td>
+      <td>35548.469784</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>192149.203498</td>
+      <td>36030.590795</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>202261.838096</td>
+      <td>36513.694642</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>213191.005692</td>
+      <td>36991.605037</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>218784.947972</td>
+      <td>37462.231458</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>230541.593911</td>
+      <td>37920.696968</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>245498.700206</td>
+      <td>38307.409353</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>256663.346782</td>
+      <td>38742.535742</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>271088.189229</td>
+      <td>39176.028268</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>288478.010201</td>
+      <td>39606.837547</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>313838.113897</td>
+      <td>40040.118863</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>344724.420195</td>
+      <td>40475.047642</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>379205.674317</td>
+      <td>40909.750389</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>416504.775669</td>
+      <td>41347.240695</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>446441.988262</td>
+      <td>41731.031032</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>448186.871127</td>
+      <td>42174.566563</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="id4">
+<h2><span class="section-number">2.5.3. </span>汇总统计量<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">groupby</span></code> 后可接的汇总统计量有：</p>
+<ul class="simple">
+<li><p>mean - 均值</p></li>
+<li><p>max - 最大值</p></li>
+<li><p>min - 最小值</p></li>
+<li><p>median - 中位数</p></li>
+<li><p>std - 标准差</p></li>
+<li><p>mad - 平均绝对偏差</p></li>
+<li><p>count - 计数</p></li>
+<li><p>skew - 偏度</p></li>
+<li><p>quantile - 指定分位数</p></li>
+</ul>
+<p>这些统计量可以直接接 groupby 对象使用，此外，<code class="docutils literal notranslate"><span class="pre">agg</span></code>
+方法提供了一次汇总多个统计量的方法。</p>
+<p>例如，汇总各个国家 <code class="docutils literal notranslate"><span class="pre">country</span></code> 人口 <code class="docutils literal notranslate"><span class="pre">POP</span></code> 的均值、最大值、最小值。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">])[</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>min</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Afghanistan</th>
+      <td>15707.344917</td>
+      <td>8150.368</td>
+      <td>31889.923</td>
+    </tr>
+    <tr>
+      <th>Albania</th>
+      <td>2461.208000</td>
+      <td>1227.156</td>
+      <td>3250.778</td>
+    </tr>
+    <tr>
+      <th>Algeria</th>
+      <td>19896.967967</td>
+      <td>8892.718</td>
+      <td>34178.000</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>7295.199200</td>
+      <td>4117.617</td>
+      <td>12799.000</td>
+    </tr>
+    <tr>
+      <th>Antigua and Barbuda</th>
+      <td>65.352367</td>
+      <td>45.816</td>
+      <td>85.700</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Venezuela</th>
+      <td>15180.664233</td>
+      <td>5009.006</td>
+      <td>27191.090</td>
+    </tr>
+    <tr>
+      <th>Vietnam</th>
+      <td>54711.902183</td>
+      <td>25348.144</td>
+      <td>88577.000</td>
+    </tr>
+    <tr>
+      <th>Yemen</th>
+      <td>10789.802917</td>
+      <td>4777.089</td>
+      <td>22858.000</td>
+    </tr>
+    <tr>
+      <th>Zambia</th>
+      <td>6448.586433</td>
+      <td>2553.000</td>
+      <td>13061.000</td>
+    </tr>
+    <tr>
+      <th>Zimbabwe</th>
+      <td>7567.034333</td>
+      <td>2853.151</td>
+      <td>11867.855</td>
+    </tr>
+  </tbody>
+</table>
+<p>190 rows × 3 columns</p>
+</div></div>
+<div class="section" id="id5">
+<h2><span class="section-number">2.5.4. </span>多重索引<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>在进行分组汇总操作时，产生的结果并不是常见的二维表数据框，而是具有多重索引的数据框。
+pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表的功能。</p>
+<p>例如，按照 <code class="docutils literal notranslate"><span class="pre">country</span></code> 和 <code class="docutils literal notranslate"><span class="pre">year</span></code> 顺序对 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code> 和 <code class="docutils literal notranslate"><span class="pre">POP</span></code>
+进行分组汇总，汇总统计量为最小值和最大值。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">4</span><span class="n">n</span><span class="o">/</span><span class="n">v40br47s46ggrjm9bdm64lwh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_99018</span><span class="o">/</span><span class="mf">1148587731.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span> <span class="ne">FutureWarning</span><span class="p">:</span> <span class="n">Indexing</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">keys</span> <span class="p">(</span><span class="n">implicitly</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">keys</span><span class="p">)</span> <span class="n">will</span> <span class="n">be</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">use</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">instead</span><span class="o">.</span>
+  <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">tcgdp</th>
+      <th colspan="2" halign="left">POP</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>min</th>
+      <th>max</th>
+      <th>min</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Afghanistan</th>
+      <th>1950</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8150.368</td>
+      <td>8150.368</td>
+    </tr>
+    <tr>
+      <th>1951</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8284.473</td>
+      <td>8284.473</td>
+    </tr>
+    <tr>
+      <th>1952</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8425.333</td>
+      <td>8425.333</td>
+    </tr>
+    <tr>
+      <th>1953</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8573.217</td>
+      <td>8573.217</td>
+    </tr>
+    <tr>
+      <th>1954</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8728.408</td>
+      <td>8728.408</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">Zimbabwe</th>
+      <th>2005</th>
+      <td>1968.205961</td>
+      <td>1968.205961</td>
+      <td>11639.470</td>
+      <td>11639.470</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>2132.305773</td>
+      <td>2132.305773</td>
+      <td>11544.326</td>
+      <td>11544.326</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>2107.937100</td>
+      <td>2107.937100</td>
+      <td>11443.187</td>
+      <td>11443.187</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>1772.209867</td>
+      <td>1772.209867</td>
+      <td>11350.000</td>
+      <td>11350.000</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>1906.049843</td>
+      <td>1906.049843</td>
+      <td>11383.000</td>
+      <td>11383.000</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 4 columns</p>
+</div><p>此时数据框中有两个行索引（<code class="docutils literal notranslate"><span class="pre">country</span></code> 和
+<code class="docutils literal notranslate"><span class="pre">year</span></code>）和两个列索引（<code class="docutils literal notranslate"><span class="pre">tcgdp</span></code> + <code class="docutils literal notranslate"><span class="pre">POP</span></code> 和 <code class="docutils literal notranslate"><span class="pre">min</span></code> +
+<code class="docutils literal notranslate"><span class="pre">max</span></code>）。需要筛选列时，第一个 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 筛选第一重列索引（从 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code>
+和 <code class="docutils literal notranslate"><span class="pre">POP</span></code> 中选择一个列），第二个 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 筛选第二重列索引（从 <code class="docutils literal notranslate"><span class="pre">min</span></code> 和
+<code class="docutils literal notranslate"><span class="pre">max</span></code> 中选择一个列）。</p>
+<p>例如，查询各个国家 <code class="docutils literal notranslate"><span class="pre">country</span></code> 各年 <code class="docutils literal notranslate"><span class="pre">year</span></code> 人口 <code class="docutils literal notranslate"><span class="pre">POP</span></code> 的最小值。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_query</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+<span class="n">df_query</span><span class="p">[</span><span class="s1">&#39;POP&#39;</span><span class="p">][</span><span class="s1">&#39;min&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">4</span><span class="n">n</span><span class="o">/</span><span class="n">v40br47s46ggrjm9bdm64lwh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_99018</span><span class="o">/</span><span class="mf">1120076566.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span> <span class="ne">FutureWarning</span><span class="p">:</span> <span class="n">Indexing</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">keys</span> <span class="p">(</span><span class="n">implicitly</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">keys</span><span class="p">)</span> <span class="n">will</span> <span class="n">be</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">use</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">instead</span><span class="o">.</span>
+  <span class="n">df_query</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">country</span>      <span class="n">year</span>
+<span class="n">Afghanistan</span>  <span class="mi">1950</span>     <span class="mf">8150.368</span>
+             <span class="mi">1951</span>     <span class="mf">8284.473</span>
+             <span class="mi">1952</span>     <span class="mf">8425.333</span>
+             <span class="mi">1953</span>     <span class="mf">8573.217</span>
+             <span class="mi">1954</span>     <span class="mf">8728.408</span>
+                       <span class="o">...</span>
+<span class="n">Zimbabwe</span>     <span class="mi">2005</span>    <span class="mf">11639.470</span>
+             <span class="mi">2006</span>    <span class="mf">11544.326</span>
+             <span class="mi">2007</span>    <span class="mf">11443.187</span>
+             <span class="mi">2008</span>    <span class="mf">11350.000</span>
+             <span class="mi">2009</span>    <span class="mf">11383.000</span>
+<span class="n">Name</span><span class="p">:</span> <span class="nb">min</span><span class="p">,</span> <span class="n">Length</span><span class="p">:</span> <span class="mi">11400</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+        </div>
+        <div class="side-doc-outline">
+            <div class="side-doc-outline--content"> 
+<div class="localtoc">
+    <p class="caption">
+      <span class="caption-text">Table Of Contents</span>
+    </p>
+    <ul>
+<li><a class="reference internal" href="#">2.5. 分组汇总</a><ul>
+<li><a class="reference internal" href="#id2">2.5.1. 分组变量</a></li>
+<li><a class="reference internal" href="#id3">2.5.2. 汇总变量</a></li>
+<li><a class="reference internal" href="#id4">2.5.3. 汇总统计量</a></li>
+<li><a class="reference internal" href="#id5">2.5.4. 多重索引</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+            </div>
+        </div>
+
+      <div class="clearer"></div>
+    </div><div class="pagenation">
+     <a id="button-prev" href="data-preprocessing.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="P">
+         <i class="pagenation-arrow-L fas fa-arrow-left fa-lg"></i>
+         <div class="pagenation-text">
+            <span class="pagenation-direction">Previous</span>
+            <div>2.4. 数据处理</div>
+         </div>
+     </a>
+     <a id="button-next" href="../refs.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+         <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
+        <div class="pagenation-text">
+            <span class="pagenation-direction">Next</span>
+            <div>3. 参考文献</div>
+        </div>
+     </a>
+  </div>
+        
+        </main>
+    </div>
+  </body>
+</html>
