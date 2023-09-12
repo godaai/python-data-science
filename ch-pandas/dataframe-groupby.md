@@ -36,6 +36,7 @@ else:
     print(f"文件夹已存在，无需操作。")
 
 df = pd.read_csv(os.path.join(folder_path, "pwt70_w_country_names.csv"))
+df = df.fillna(0)
 ```
 
 ### 分组变量
