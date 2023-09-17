@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>2.5. 分组汇总 &#8212; Python 数据科学实战 1.0.0 documentation</title>
+    <title>3.5. 分组汇总 &#8212; Python 数据科学实战 1.0.0 documentation</title>
 
     <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
@@ -26,16 +26,16 @@
     <script src="../_static/d2l.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.6. 多表操作" href="dataframe-merge-concat.html" />
-    <link rel="prev" title="2.4. 数据处理" href="data-preprocessing.html" /> 
+    <link rel="next" title="3.6. 多表操作" href="dataframe-merge-concat.html" />
+    <link rel="prev" title="3.4. 数据处理" href="data-preprocessing.html" /> 
   </head>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
     <div class="mdl-layout__header-row">
         
         <nav class="mdl-navigation breadcrumb">
-            <a class="mdl-navigation__link" href="index.html"><span class="section-number">2. </span>pandas</a><i class="material-icons">navigate_next</i>
-            <a class="mdl-navigation__link is-active"><span class="section-number">2.5. </span>分组汇总</a>
+            <a class="mdl-navigation__link" href="index.html"><span class="section-number">3. </span>pandas</a><i class="material-icons">navigate_next</i>
+            <a class="mdl-navigation__link is-active"><span class="section-number">3.5. </span>分组汇总</a>
         </nav>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation">
@@ -99,16 +99,21 @@ Show Source
 <li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.1. 本书主要内容</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. pandas</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.5. 分组汇总</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">2.6. 多表操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-numpy/index.html">2. NumPy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">2.1. NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">2.2. ndarray</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. pandas</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">3.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">3.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">3.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">3.4. 数据处理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.5. 分组汇总</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">3.6. 多表操作</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">4. 参考文献</a></li>
 </ul>
 
             </nav>
@@ -142,16 +147,21 @@ Show Source
 <li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.1. 本书主要内容</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. pandas</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.5. 分组汇总</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">2.6. 多表操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-numpy/index.html">2. NumPy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">2.1. NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">2.2. ndarray</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. pandas</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">3.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">3.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">3.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">3.4. 数据处理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.5. 分组汇总</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">3.6. 多表操作</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">4. 参考文献</a></li>
 </ul>
 
             </nav>
@@ -164,19 +174,19 @@ Show Source
         <div class="page-content" role="main">
         
   <div class="section" id="dataframe-groupby">
-<span id="id1"></span><h1><span class="section-number">2.5. </span>分组汇总<a class="headerlink" href="#dataframe-groupby" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">3.5. </span>分组汇总<a class="headerlink" href="#dataframe-groupby" title="Permalink to this heading">¶</a></h1>
 <p>实际的数据分析中，经常需要对某一类数据进行统计分析。比如，假如我们拥有全国所有人的身高和体重数据，我们想按照省份分组，统计每个省的平均身高和平均体重，这时候就需要使用分组操作。pandas
 提供了 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 函数进行类似的分组汇总操作。:numref:<code class="docutils literal notranslate"><span class="pre">groupby-img</span></code>
 计算平均身高的分组汇总流程，主要包括两部分：分组与汇总。其中分组阶段将同一类的内容归结到相同的组中；汇总阶段将所关心的数据进行计算，比如求和、求平均等。</p>
-<p>按哪些字段进行分组，这些字段又被成为
-<strong>分组变量</strong>。对其他字段进行汇总，其他汇总字段被成为
-<strong>汇总变量</strong>。对汇总变量进行计算，被称为 <strong>汇总统计量</strong>。</p>
+<p>按哪些字段进行分组，这些字段又被成为 ** 分组变量
+<strong>。对其他字段进行汇总，其他汇总字段被成为</strong> 汇总变量
+<strong>。对汇总变量进行计算，被称为</strong> 汇总统计量 **。</p>
 <div class="figure align-default" id="id6">
 <span id="groupby-img"></span><a class="reference internal image-reference" href="../_images/groupby.svg"><img alt="../_images/groupby.svg" src="../_images/groupby.svg" width="800px" /></a>
-<p class="caption"><span class="caption-number">图2.5.1 </span><span class="caption-text">分组与汇总</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图3.5.1 </span><span class="caption-text">分组与汇总</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="id2">
-<h2><span class="section-number">2.5.1. </span>分组变量<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.5.1. </span>分组变量<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>在进行分组汇总时，分组变量可以有一个或多个。</p>
 <p>例如，按照 <code class="docutils literal notranslate"><span class="pre">country</span></code> 和 <code class="docutils literal notranslate"><span class="pre">year</span></code> 分组，并对 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code>
 汇总求平均值，此时在 <code class="docutils literal notranslate"><span class="pre">groupby</span></code>
@@ -186,7 +196,7 @@ Show Source
 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code>。最后要接上所需要进行的汇总计算，比如
 <code class="docutils literal notranslate"><span class="pre">.mean()</span></code>。计算结果中产生了多个索引，本例中是 <code class="docutils literal notranslate"><span class="pre">country</span></code> 和
 <code class="docutils literal notranslate"><span class="pre">year</span></code>，指代相应组的情况。</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 <div>
@@ -269,15 +279,11 @@ Show Source
 <p>11400 rows × 1 columns</p>
 </div></div>
 <div class="section" id="id3">
-<h2><span class="section-number">2.5.2. </span>汇总变量<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.5.2. </span>汇总变量<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <p>在进行分组汇总时，汇总变量也可以有一个或多个。</p>
 <p>例如按照 <code class="docutils literal notranslate"><span class="pre">year</span></code> 汇总 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code> 和 <code class="docutils literal notranslate"><span class="pre">POP</span></code>，在 <code class="docutils literal notranslate"><span class="pre">.groupby</span></code>
 后直接使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 筛选相应列，再接汇总统计量。</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">4</span><span class="n">n</span><span class="o">/</span><span class="n">v40br47s46ggrjm9bdm64lwh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_35461</span><span class="o">/</span><span class="mf">459214562.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span> <span class="ne">FutureWarning</span><span class="p">:</span> <span class="n">Indexing</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">keys</span> <span class="p">(</span><span class="n">implicitly</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">keys</span><span class="p">)</span> <span class="n">will</span> <span class="n">be</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">use</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">instead</span><span class="o">.</span>
-  <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 <div>
@@ -612,7 +618,7 @@ Show Source
 </table>
 </div></div>
 <div class="section" id="id4">
-<h2><span class="section-number">2.5.3. </span>汇总统计量<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.5.3. </span>汇总统计量<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">groupby</span></code> 后可接的汇总统计量有：</p>
 <ul class="simple">
 <li><p>mean - 均值</p></li>
@@ -628,7 +634,7 @@ Show Source
 <p>这些统计量可以直接接 groupby 对象使用，此外，<code class="docutils literal notranslate"><span class="pre">agg</span></code>
 方法提供了一次汇总多个统计量的方法。</p>
 <p>例如，汇总各个国家 <code class="docutils literal notranslate"><span class="pre">country</span></code> 人口 <code class="docutils literal notranslate"><span class="pre">POP</span></code> 的均值、最大值、最小值。</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">])[</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">])[</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <div>
@@ -732,16 +738,12 @@ Show Source
 <p>190 rows × 3 columns</p>
 </div></div>
 <div class="section" id="id5">
-<h2><span class="section-number">2.5.4. </span>多重索引<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.5.4. </span>多重索引<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
 <p>在进行分组汇总操作时，产生的结果并不是常见的二维表数据框，而是具有多重索引的数据框。
 pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表的功能。</p>
 <p>例如，按照 <code class="docutils literal notranslate"><span class="pre">country</span></code> 和 <code class="docutils literal notranslate"><span class="pre">year</span></code> 顺序对 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code> 和 <code class="docutils literal notranslate"><span class="pre">POP</span></code>
 进行分组汇总，汇总统计量为最小值和最大值。</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">4</span><span class="n">n</span><span class="o">/</span><span class="n">v40br47s46ggrjm9bdm64lwh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_35461</span><span class="o">/</span><span class="mf">1148587731.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span> <span class="ne">FutureWarning</span><span class="p">:</span> <span class="n">Indexing</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">keys</span> <span class="p">(</span><span class="n">implicitly</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">keys</span><span class="p">)</span> <span class="n">will</span> <span class="n">be</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">use</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">instead</span><span class="o">.</span>
-  <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <div>
@@ -877,12 +879,8 @@ pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表
 和 <code class="docutils literal notranslate"><span class="pre">POP</span></code> 中选择一个列），第二个 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 筛选第二重列索引（从 <code class="docutils literal notranslate"><span class="pre">min</span></code> 和
 <code class="docutils literal notranslate"><span class="pre">max</span></code> 中选择一个列）。</p>
 <p>例如，查询各个国家 <code class="docutils literal notranslate"><span class="pre">country</span></code> 各年 <code class="docutils literal notranslate"><span class="pre">year</span></code> 人口 <code class="docutils literal notranslate"><span class="pre">POP</span></code> 的最小值。</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_query</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_query</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
 <span class="n">df_query</span><span class="p">[</span><span class="s1">&#39;POP&#39;</span><span class="p">][</span><span class="s1">&#39;min&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">4</span><span class="n">n</span><span class="o">/</span><span class="n">v40br47s46ggrjm9bdm64lwh0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_35461</span><span class="o">/</span><span class="mf">1120076566.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span> <span class="ne">FutureWarning</span><span class="p">:</span> <span class="n">Indexing</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">keys</span> <span class="p">(</span><span class="n">implicitly</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">keys</span><span class="p">)</span> <span class="n">will</span> <span class="n">be</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">use</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">instead</span><span class="o">.</span>
-  <span class="n">df_query</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">country</span>      <span class="n">year</span>
@@ -912,11 +910,11 @@ pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表
       <span class="caption-text">Table Of Contents</span>
     </p>
     <ul>
-<li><a class="reference internal" href="#">2.5. 分组汇总</a><ul>
-<li><a class="reference internal" href="#id2">2.5.1. 分组变量</a></li>
-<li><a class="reference internal" href="#id3">2.5.2. 汇总变量</a></li>
-<li><a class="reference internal" href="#id4">2.5.3. 汇总统计量</a></li>
-<li><a class="reference internal" href="#id5">2.5.4. 多重索引</a></li>
+<li><a class="reference internal" href="#">3.5. 分组汇总</a><ul>
+<li><a class="reference internal" href="#id2">3.5.1. 分组变量</a></li>
+<li><a class="reference internal" href="#id3">3.5.2. 汇总变量</a></li>
+<li><a class="reference internal" href="#id4">3.5.3. 汇总统计量</a></li>
+<li><a class="reference internal" href="#id5">3.5.4. 多重索引</a></li>
 </ul>
 </li>
 </ul>
@@ -931,14 +929,14 @@ pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表
          <i class="pagenation-arrow-L fas fa-arrow-left fa-lg"></i>
          <div class="pagenation-text">
             <span class="pagenation-direction">Previous</span>
-            <div>2.4. 数据处理</div>
+            <div>3.4. 数据处理</div>
          </div>
      </a>
      <a id="button-next" href="dataframe-merge-concat.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
         <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>
-            <div>2.6. 多表操作</div>
+            <div>3.6. 多表操作</div>
         </div>
      </a>
   </div>

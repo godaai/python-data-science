@@ -11,6 +11,7 @@
 
 ch-python-lang/index
 
+ch-numpy/index
 ch-pandas/index
 
 refs
