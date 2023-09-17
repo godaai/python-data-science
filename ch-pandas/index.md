@@ -8,4 +8,5 @@ series-dataframe
 dataframe-slicing
 data-preprocessing
 dataframe-groupby
+dataframe-merge-concat
 ```
