@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>2.3. 数据切片 &#8212; Python 数据科学实战 1.0.0 documentation</title>
+    <title>3.3. 数据切片 &#8212; Python 数据科学实战 1.0.0 documentation</title>
 
     <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
@@ -26,16 +26,16 @@
     <script src="../_static/d2l.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.4. 数据处理" href="data-preprocessing.html" />
-    <link rel="prev" title="2.2. Series 与 DataFrame" href="series-dataframe.html" /> 
+    <link rel="next" title="3.4. 数据处理" href="data-preprocessing.html" />
+    <link rel="prev" title="3.2. Series 与 DataFrame" href="series-dataframe.html" /> 
   </head>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
     <div class="mdl-layout__header-row">
         
         <nav class="mdl-navigation breadcrumb">
-            <a class="mdl-navigation__link" href="index.html"><span class="section-number">2. </span>pandas</a><i class="material-icons">navigate_next</i>
-            <a class="mdl-navigation__link is-active"><span class="section-number">2.3. </span>数据切片</a>
+            <a class="mdl-navigation__link" href="index.html"><span class="section-number">3. </span>pandas</a><i class="material-icons">navigate_next</i>
+            <a class="mdl-navigation__link is-active"><span class="section-number">3.3. </span>数据切片</a>
         </nav>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation">
@@ -99,16 +99,21 @@ Show Source
 <li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.1. 本书主要内容</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. pandas</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.3. 数据切片</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-groupby.html">2.5. 分组汇总</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">2.6. 多表操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-numpy/index.html">2. NumPy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">2.1. NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">2.2. ndarray</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. pandas</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">3.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">3.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">3.4. 数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-groupby.html">3.5. 分组汇总</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">3.6. 多表操作</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">4. 参考文献</a></li>
 </ul>
 
             </nav>
@@ -142,16 +147,21 @@ Show Source
 <li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.1. 本书主要内容</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. pandas</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.3. 数据切片</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-groupby.html">2.5. 分组汇总</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">2.6. 多表操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-numpy/index.html">2. NumPy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">2.1. NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">2.2. ndarray</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. pandas</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">3.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">3.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">3.4. 数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-groupby.html">3.5. 分组汇总</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">3.6. 多表操作</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">4. 参考文献</a></li>
 </ul>
 
             </nav>
@@ -164,10 +174,10 @@ Show Source
         <div class="page-content" role="main">
         
   <div class="section" id="dataframe-slicing">
-<span id="id1"></span><h1><span class="section-number">2.3. </span>数据切片<a class="headerlink" href="#dataframe-slicing" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">3.3. </span>数据切片<a class="headerlink" href="#dataframe-slicing" title="Permalink to this heading">¶</a></h1>
 <p>实际中，我们常常不是分析整个数据，而是数据中的部分子集。如何根据特定的条件获得所需要的数据是本节的主要内容。</p>
 <div class="section" id="id2">
-<h2><span class="section-number">2.3.1. </span>主要方法<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.3.1. </span>主要方法<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>对 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 选择行和列，主要有几种方式：</p>
 <ul class="simple">
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 选择</p></li>
@@ -176,7 +186,7 @@ Show Source
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><span class="section-number">2.3.2. </span>使用 [] 进行选择<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.3.2. </span>使用 [] 进行选择<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <p>选择第 2 行到第 5 行（不包括第 5 行）的数据：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
@@ -1014,7 +1024,7 @@ Show Source
 <p>3827 rows × 37 columns</p>
 </div></div>
 <div class="section" id="iloc-loc">
-<h2><span class="section-number">2.3.3. </span>iloc 或者 loc<a class="headerlink" href="#iloc-loc" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.3.3. </span>iloc 或者 loc<a class="headerlink" href="#iloc-loc" title="Permalink to this heading">¶</a></h2>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">iloc</span></code> 函数进行选择，形式应为 <code class="docutils literal notranslate"><span class="pre">.iloc[rows,</span> <span class="pre">columns]</span></code>。</p>
 <p>可以将 i 理解为 integer，即 i 是整数，表示行或者列位置（位置由被称为
 index），<code class="docutils literal notranslate"><span class="pre">iloc</span></code> 即用整数来选择行或者选择列。i 从 0 开始，至
@@ -1316,7 +1326,7 @@ index），<code class="docutils literal notranslate"><span class="pre">iloc</sp
 </div><p>由于 <code class="docutils literal notranslate"><span class="pre">iloc</span></code> 函数只接受整数，所以不允许使用这种条件进行筛选。</p>
 </div>
 <div class="section" id="query">
-<h2><span class="section-number">2.3.4. </span>query<a class="headerlink" href="#query" title="Permalink to this heading">¶</a></h2>
+<h2><span class="section-number">3.3.4. </span>query<a class="headerlink" href="#query" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">.query()</span></code> 函数的用法与 <code class="docutils literal notranslate"><span class="pre">[]</span></code>
 有相似之处。值得注意的是，<code class="docutils literal notranslate"><span class="pre">.query()</span></code>
 函数的性能更好，在处理大规模数据时更快。</p>
@@ -1956,11 +1966,11 @@ index），<code class="docutils literal notranslate"><span class="pre">iloc</sp
       <span class="caption-text">Table Of Contents</span>
     </p>
     <ul>
-<li><a class="reference internal" href="#">2.3. 数据切片</a><ul>
-<li><a class="reference internal" href="#id2">2.3.1. 主要方法</a></li>
-<li><a class="reference internal" href="#id3">2.3.2. 使用 [] 进行选择</a></li>
-<li><a class="reference internal" href="#iloc-loc">2.3.3. iloc 或者 loc</a></li>
-<li><a class="reference internal" href="#query">2.3.4. query</a></li>
+<li><a class="reference internal" href="#">3.3. 数据切片</a><ul>
+<li><a class="reference internal" href="#id2">3.3.1. 主要方法</a></li>
+<li><a class="reference internal" href="#id3">3.3.2. 使用 [] 进行选择</a></li>
+<li><a class="reference internal" href="#iloc-loc">3.3.3. iloc 或者 loc</a></li>
+<li><a class="reference internal" href="#query">3.3.4. query</a></li>
 </ul>
 </li>
 </ul>
@@ -1975,14 +1985,14 @@ index），<code class="docutils literal notranslate"><span class="pre">iloc</sp
          <i class="pagenation-arrow-L fas fa-arrow-left fa-lg"></i>
          <div class="pagenation-text">
             <span class="pagenation-direction">Previous</span>
-            <div>2.2. Series 与 DataFrame</div>
+            <div>3.2. Series 与 DataFrame</div>
          </div>
      </a>
      <a id="button-next" href="data-preprocessing.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
         <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>
-            <div>2.4. 数据处理</div>
+            <div>3.4. 数据处理</div>
         </div>
      </a>
   </div>

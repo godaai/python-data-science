@@ -14,7 +14,7 @@ pandas 的 `merge` 操作可以合并两个 `DataFrame`（或者称为表） ，
 ```{.python .input}
 import pandas as pd
 import numpy as np
- 
+
 # customer_prod_df
 d1 = {'customer_id':pd.Series([1,2,3,4,5,6]),
   'product':pd.Series(['Oven','Oven','Oven','Television','Television','Television'])}
@@ -39,7 +39,7 @@ inner_join_df= pd.merge(customer_prod_df, customer_state_df, on='customer_id', h
 inner_join_df
 ```
 
-合并两个表时，通常需要使用键（key）来判断哪些数据与哪些数据合并。比如本例中，两个表都包含`customer_id` 这个字段，`customer_id` 可以被用来连接这两个 `DataFrame`。相同 `customer_id` 的行被合并在一起。
+合并两个表时，通常需要使用键（key）来判断哪些数据与哪些数据合并。比如本例中，两个表都包含 `customer_id` 这个字段，`customer_id` 可以被用来连接这两个 `DataFrame`。相同 `customer_id` 的行被合并在一起。
 
 我们回到 `merge` 函数的参数。完整的参数形式为：`pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False,suffixes=('_x','_y'))`。虽然参数很多，其实大部分时间我们主要关心的是 `left`、`right`、`how` 和 `on`。
 
@@ -47,7 +47,7 @@ inner_join_df
 
 `on` 表示两个表依据哪个字段（或哪些字段）进行合并。这个字段或这些字段被称为键（key）。两个表的 key 字段应该是表示同一个事物。现在我们要根据 key，把两个 `DataFrame` 合并成一个更大的表。这个例子中，以 `customer_id` 为字段进行合并，主要对左右两个表中相同 `customer_id` 进行操作。
 
-`how` 表示合并的方式。在合并过程中，左侧表和右侧表的 key 不一定都包含同样的值。比如，如果左侧表包含某个 `customer_id` 但右侧表不包含这个 `customer_id`，那应该遵循什么样的逻辑去合并。`how='inner'` 是其中一种方式，叫做内连接：只有在左侧 DataFrame 和右侧 DataFrame 中**都**存在的行才会包含在结果中。
+`how` 表示合并的方式。在合并过程中，左侧表和右侧表的 key 不一定都包含同样的值。比如，如果左侧表包含某个 `customer_id` 但右侧表不包含这个 `customer_id`，那应该遵循什么样的逻辑去合并。`how='inner'` 是其中一种方式，叫做内连接：只有在左侧 DataFrame 和右侧 DataFrame 中 ** 都 ** 存在的行才会包含在结果中。
 
 `how` 除了 `inner`，还有其他的选项：`outer`、`left` 和 `right`。
 
@@ -72,7 +72,7 @@ outer_join_df
 
 ```{.python .input}
 left_join_df= pd.merge(customer_prod_df, customer_state_df, on='customer_id', how='left')
-left_join_df 
+left_join_df
 ```
 
 * 右连接
@@ -81,12 +81,12 @@ left_join_df
 
 ```{.python .input}
 right_join_df= pd.merge(customer_prod_df, customer_state_df, on='customer_id', how='right')
-right_join_df 
+right_join_df
 ```
 
 #### 其他合并方式
 
-还有一些其他合并，不是根据 key 去在左右表中查找。比如，根据`DataFrame`最左侧的 index 列。`DataFrame` 默认有 index 列，根据该列合并两个表，由于此时不是根据 `customer_id` 来合并，合并之后保留了两个 `customer_id`，为了区别左右两表的 `customer_id`，这里加了后缀 `_x` 和 `_y`。
+还有一些其他合并，不是根据 key 去在左右表中查找。比如，根据 `DataFrame` 最左侧的 index 列。`DataFrame` 默认有 index 列，根据该列合并两个表，由于此时不是根据 `customer_id` 来合并，合并之后保留了两个 `customer_id`，为了区别左右两表的 `customer_id`，这里加了后缀 `_x` 和 `_y`。
 
 ```{.python .input}
 index_df = pd.merge(customer_prod_df, customer_state_df, right_index=True, left_index=True)
@@ -95,7 +95,7 @@ index_df
 
 ### concat
 
-与 `merge` 对表结构进行横向的操作不同，`concat` 函数默认是进行纵向的合并，也就是将多行进行**堆叠式**的合并。
+与 `merge` 对表结构进行横向的操作不同，`concat` 函数默认是进行纵向的合并，也就是将多行进行 ** 堆叠式 ** 的合并。
 
 比如下面的例子，把所有的行和所有的列合并在一起，缺失的填充 `NaN`。
 
@@ -104,7 +104,7 @@ row_concat_df = pd.concat([customer_prod_df, customer_state_df])
 row_concat_df
 ```
 
-下面的例子，设定了`join="inner"`，两个表中都包含 `customer_id` 字段进行了纵向合并。需要注意的是，`concat` 是进行纵向的堆叠，而没有去除重复的 `customer_id`。
+下面的例子，设定了 `join="inner"`，两个表中都包含 `customer_id` 字段进行了纵向合并。需要注意的是，`concat` 是进行纵向的堆叠，而没有去除重复的 `customer_id`。
 
 ```{.python .input}
 concat_inner_df = pd.concat([customer_prod_df, customer_state_df], join = 'inner')
@@ -164,6 +164,6 @@ print("the first 2 rows:")
 merged_df.head(2)
 ```
 
-关于合并后的新表，列数一共29列。`team_attr_df` 一共25列， `team_df` 一共5列，即，25 + 5 - 1，因为两个表都包含同样的一列 `team_api_id`，所以需要减一。
+关于合并后的新表，列数一共 29 列。`team_attr_df` 一共 25 列， `team_df` 一共 5 列，即，25 + 5 - 1，因为两个表都包含同样的一列 `team_api_id`，所以需要减一。
 
-行数一共1458，这与 `team_attr_df` 的列数一致。这是因为本例的 `how` 使用的 `inner`。
+行数一共 1458，这与 `team_attr_df` 的列数一致。这是因为本例的 `how` 使用的 `inner`。

@@ -9,9 +9,9 @@
 提供了 ``groupby`` 函数进行类似的分组汇总操作。:numref:\ ``groupby-img``
 计算平均身高的分组汇总流程，主要包括两部分：分组与汇总。其中分组阶段将同一类的内容归结到相同的组中；汇总阶段将所关心的数据进行计算，比如求和、求平均等。
 
-按哪些字段进行分组，这些字段又被成为
-**分组变量**\ 。对其他字段进行汇总，其他汇总字段被成为
-**汇总变量**\ 。对汇总变量进行计算，被称为 **汇总统计量**\ 。
+按哪些字段进行分组，这些字段又被成为 \*\* 分组变量
+**。对其他字段进行汇总，其他汇总字段被成为** 汇总变量
+**。对汇总变量进行计算，被称为** 汇总统计量 \**。
 
 .. _groupby-img:
 
@@ -41,7 +41,7 @@
 
    \diilbookstyleinputcell
 
-.. code:: ipython3
+.. code:: python
 
     df.groupby(['country','year'])[['tcgdp']].mean()
 
@@ -144,20 +144,9 @@
 
    \diilbookstyleinputcell
 
-.. code:: ipython3
+.. code:: python
 
     df.groupby(['year'])['tcgdp','POP'].mean()
-
-
-.. raw:: latex
-
-   \diilbookstyleoutputcell
-
-.. parsed-literal::
-    :class: output
-
-    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_35461/459214562.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
-      df.groupby(['year'])['tcgdp','POP'].mean()
 
 
 
@@ -530,7 +519,7 @@
 
    \diilbookstyleinputcell
 
-.. code:: ipython3
+.. code:: python
 
     df.groupby(['country'])['POP'].agg(['mean','min','max'])
 
@@ -655,20 +644,9 @@ pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表
 
    \diilbookstyleinputcell
 
-.. code:: ipython3
+.. code:: python
 
     df.groupby(['country','year'])['tcgdp','POP'].agg(['min','max'])
-
-
-.. raw:: latex
-
-   \diilbookstyleoutputcell
-
-.. parsed-literal::
-    :class: output
-
-    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_35461/1148587731.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
-      df.groupby(['country','year'])['tcgdp','POP'].agg(['min','max'])
 
 
 
@@ -818,21 +796,10 @@ pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表
 
    \diilbookstyleinputcell
 
-.. code:: ipython3
+.. code:: python
 
     df_query = df.groupby(['country','year'])['tcgdp','POP'].agg(['min','max'])
     df_query['POP']['min']
-
-
-.. raw:: latex
-
-   \diilbookstyleoutputcell
-
-.. parsed-literal::
-    :class: output
-
-    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_35461/1120076566.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
-      df_query = df.groupby(['country','year'])['tcgdp','POP'].agg(['min','max'])
 
 
 
