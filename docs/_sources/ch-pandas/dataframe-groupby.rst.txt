@@ -81,23 +81,23 @@
         <tr>
           <th rowspan="5" valign="top">Afghanistan</th>
           <th>1950</th>
-          <td>NaN</td>
+          <td>0.000000</td>
         </tr>
         <tr>
           <th>1951</th>
-          <td>NaN</td>
+          <td>0.000000</td>
         </tr>
         <tr>
           <th>1952</th>
-          <td>NaN</td>
+          <td>0.000000</td>
         </tr>
         <tr>
           <th>1953</th>
-          <td>NaN</td>
+          <td>0.000000</td>
         </tr>
         <tr>
           <th>1954</th>
-          <td>NaN</td>
+          <td>0.000000</td>
         </tr>
         <tr>
           <th>...</th>
@@ -156,7 +156,7 @@
 .. parsed-literal::
     :class: output
 
-    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_99018/459214562.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
+    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_35461/459214562.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
       df.groupby(['year'])['tcgdp','POP'].mean()
 
 
@@ -194,277 +194,277 @@
       <tbody>
         <tr>
           <th>1950</th>
-          <td>13660.635432</td>
-          <td>16325.314772</td>
+          <td>3954.394467</td>
+          <td>16239.392063</td>
         </tr>
         <tr>
           <th>1951</th>
-          <td>14146.954624</td>
-          <td>16548.830286</td>
+          <td>4541.917011</td>
+          <td>16461.731179</td>
         </tr>
         <tr>
           <th>1952</th>
-          <td>15534.601854</td>
+          <td>5150.946930</td>
           <td>16730.487389</td>
         </tr>
         <tr>
           <th>1953</th>
-          <td>16030.140136</td>
+          <td>5483.995310</td>
           <td>17019.548668</td>
         </tr>
         <tr>
           <th>1954</th>
-          <td>15906.385842</td>
+          <td>5692.811775</td>
           <td>17326.304137</td>
         </tr>
         <tr>
           <th>1955</th>
-          <td>16351.783896</td>
+          <td>6196.465477</td>
           <td>17657.801874</td>
         </tr>
         <tr>
           <th>1956</th>
-          <td>17522.921135</td>
+          <td>6640.264851</td>
           <td>17999.434226</td>
         </tr>
         <tr>
           <th>1957</th>
-          <td>18746.775199</td>
+          <td>7104.041128</td>
           <td>18364.700442</td>
         </tr>
         <tr>
           <th>1958</th>
-          <td>19866.755209</td>
+          <td>7528.454605</td>
           <td>18730.439042</td>
         </tr>
         <tr>
           <th>1959</th>
-          <td>20371.277226</td>
+          <td>8148.510891</td>
           <td>19043.260395</td>
         </tr>
         <tr>
           <th>1960</th>
-          <td>14977.099085</td>
+          <td>8828.605776</td>
           <td>19242.437274</td>
         </tr>
         <tr>
           <th>1961</th>
-          <td>15214.093132</td>
+          <td>9128.455879</td>
           <td>19423.141142</td>
         </tr>
         <tr>
           <th>1962</th>
-          <td>16145.511804</td>
+          <td>9687.307082</td>
           <td>19760.533626</td>
         </tr>
         <tr>
           <th>1963</th>
-          <td>17253.196292</td>
+          <td>10351.917775</td>
           <td>20233.695226</td>
         </tr>
         <tr>
           <th>1964</th>
-          <td>18782.800101</td>
+          <td>11269.680061</td>
           <td>20719.860558</td>
         </tr>
         <tr>
           <th>1965</th>
-          <td>20176.152121</td>
+          <td>12105.691273</td>
           <td>21182.282832</td>
         </tr>
         <tr>
           <th>1966</th>
-          <td>21961.204688</td>
+          <td>13176.722813</td>
           <td>21655.463121</td>
         </tr>
         <tr>
           <th>1967</th>
-          <td>23418.473725</td>
+          <td>14051.084235</td>
           <td>22121.536947</td>
         </tr>
         <tr>
           <th>1968</th>
-          <td>25702.641234</td>
+          <td>15421.584740</td>
           <td>22606.150837</td>
         </tr>
         <tr>
           <th>1969</th>
-          <td>28697.931646</td>
+          <td>17218.758987</td>
           <td>23113.133937</td>
         </tr>
         <tr>
           <th>1970</th>
-          <td>25592.960652</td>
+          <td>21282.567279</td>
           <td>23618.829389</td>
         </tr>
         <tr>
           <th>1971</th>
-          <td>28178.816652</td>
+          <td>23432.910689</td>
           <td>24137.869711</td>
         </tr>
         <tr>
           <th>1972</th>
-          <td>31065.456132</td>
+          <td>25833.379310</td>
           <td>24644.483005</td>
         </tr>
         <tr>
           <th>1973</th>
-          <td>35065.397810</td>
+          <td>29159.646600</td>
           <td>25140.115900</td>
         </tr>
         <tr>
           <th>1974</th>
-          <td>39204.549554</td>
+          <td>32601.678050</td>
           <td>25623.884663</td>
         </tr>
         <tr>
           <th>1975</th>
-          <td>43423.381841</td>
+          <td>36109.970163</td>
           <td>26088.471411</td>
         </tr>
         <tr>
           <th>1976</th>
-          <td>48300.823210</td>
+          <td>40165.947722</td>
           <td>26535.470116</td>
         </tr>
         <tr>
           <th>1977</th>
-          <td>53742.382390</td>
+          <td>44691.033777</td>
           <td>26979.055474</td>
         </tr>
         <tr>
           <th>1978</th>
-          <td>60599.360302</td>
+          <td>50393.152251</td>
           <td>27418.046916</td>
         </tr>
         <tr>
           <th>1979</th>
-          <td>68524.511284</td>
+          <td>56983.540963</td>
           <td>27873.890479</td>
         </tr>
         <tr>
           <th>1980</th>
-          <td>76299.636694</td>
+          <td>63850.748602</td>
           <td>28329.849105</td>
         </tr>
         <tr>
           <th>1981</th>
-          <td>84839.459476</td>
+          <td>70997.231877</td>
           <td>28790.876000</td>
         </tr>
         <tr>
           <th>1982</th>
-          <td>90562.026563</td>
+          <td>75786.116966</td>
           <td>29287.531784</td>
         </tr>
         <tr>
           <th>1983</th>
-          <td>96863.034920</td>
+          <td>81059.066064</td>
           <td>29795.689879</td>
         </tr>
         <tr>
           <th>1984</th>
-          <td>105519.346396</td>
+          <td>88303.031984</td>
           <td>30288.007526</td>
         </tr>
         <tr>
           <th>1985</th>
-          <td>112897.453765</td>
+          <td>94477.342887</td>
           <td>30791.765868</td>
         </tr>
         <tr>
           <th>1986</th>
-          <td>117703.162810</td>
+          <td>101596.414215</td>
           <td>31313.561847</td>
         </tr>
         <tr>
           <th>1987</th>
-          <td>126084.211323</td>
+          <td>109494.183517</td>
           <td>31863.784021</td>
         </tr>
         <tr>
           <th>1988</th>
-          <td>135934.150908</td>
+          <td>118048.078421</td>
           <td>32417.290021</td>
         </tr>
         <tr>
           <th>1989</th>
-          <td>144470.482552</td>
+          <td>126221.579493</td>
           <td>32964.028537</td>
         </tr>
         <tr>
           <th>1990</th>
-          <td>156581.796076</td>
+          <td>144220.075333</td>
           <td>33516.168453</td>
         </tr>
         <tr>
           <th>1991</th>
-          <td>164913.740161</td>
+          <td>151894.234358</td>
           <td>34055.531837</td>
         </tr>
         <tr>
           <th>1992</th>
-          <td>171001.831153</td>
+          <td>159301.705863</td>
           <td>34567.649100</td>
         </tr>
         <tr>
           <th>1993</th>
-          <td>171397.253122</td>
+          <td>168690.980704</td>
           <td>35065.424347</td>
         </tr>
         <tr>
           <th>1994</th>
-          <td>180851.311282</td>
+          <td>178947.613269</td>
           <td>35548.469784</td>
         </tr>
         <tr>
           <th>1995</th>
-          <td>192149.203498</td>
+          <td>190126.580304</td>
           <td>36030.590795</td>
         </tr>
         <tr>
           <th>1996</th>
-          <td>202261.838096</td>
+          <td>200132.766116</td>
           <td>36513.694642</td>
         </tr>
         <tr>
           <th>1997</th>
-          <td>213191.005692</td>
+          <td>210946.889843</td>
           <td>36991.605037</td>
         </tr>
         <tr>
           <th>1998</th>
-          <td>218784.947972</td>
+          <td>216481.948520</td>
           <td>37462.231458</td>
         </tr>
         <tr>
           <th>1999</th>
-          <td>230541.593911</td>
+          <td>228114.840291</td>
           <td>37920.696968</td>
         </tr>
         <tr>
           <th>2000</th>
-          <td>245498.700206</td>
+          <td>244206.601784</td>
           <td>38307.409353</td>
         </tr>
         <tr>
           <th>2001</th>
-          <td>256663.346782</td>
+          <td>255312.487062</td>
           <td>38742.535742</td>
         </tr>
         <tr>
           <th>2002</th>
-          <td>271088.189229</td>
+          <td>269661.409286</td>
           <td>39176.028268</td>
         </tr>
         <tr>
           <th>2003</th>
-          <td>288478.010201</td>
+          <td>286959.704885</td>
           <td>39606.837547</td>
         </tr>
         <tr>
           <th>2004</th>
-          <td>313838.113897</td>
+          <td>312186.334350</td>
           <td>40040.118863</td>
         </tr>
         <tr>
@@ -667,7 +667,7 @@ pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表
 .. parsed-literal::
     :class: output
 
-    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_99018/1148587731.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
+    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_35461/1148587731.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
       df.groupby(['country','year'])['tcgdp','POP'].agg(['min','max'])
 
 
@@ -722,36 +722,36 @@ pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表
         <tr>
           <th rowspan="5" valign="top">Afghanistan</th>
           <th>1950</th>
-          <td>NaN</td>
-          <td>NaN</td>
+          <td>0.000000</td>
+          <td>0.000000</td>
           <td>8150.368</td>
           <td>8150.368</td>
         </tr>
         <tr>
           <th>1951</th>
-          <td>NaN</td>
-          <td>NaN</td>
+          <td>0.000000</td>
+          <td>0.000000</td>
           <td>8284.473</td>
           <td>8284.473</td>
         </tr>
         <tr>
           <th>1952</th>
-          <td>NaN</td>
-          <td>NaN</td>
+          <td>0.000000</td>
+          <td>0.000000</td>
           <td>8425.333</td>
           <td>8425.333</td>
         </tr>
         <tr>
           <th>1953</th>
-          <td>NaN</td>
-          <td>NaN</td>
+          <td>0.000000</td>
+          <td>0.000000</td>
           <td>8573.217</td>
           <td>8573.217</td>
         </tr>
         <tr>
           <th>1954</th>
-          <td>NaN</td>
-          <td>NaN</td>
+          <td>0.000000</td>
+          <td>0.000000</td>
           <td>8728.408</td>
           <td>8728.408</td>
         </tr>
@@ -831,7 +831,7 @@ pandas 开发者设计这种类型的数据框是借鉴了 Excel 数据透视表
 .. parsed-literal::
     :class: output
 
-    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_99018/1120076566.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
+    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_35461/1120076566.py:1: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
       df_query = df.groupby(['country','year'])['tcgdp','POP'].agg(['min','max'])
 
 
