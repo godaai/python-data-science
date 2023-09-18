@@ -34,7 +34,7 @@ pandas 的 ``merge`` 操作可以合并两个 ``DataFrame``\ （或者称为表�
 
     import pandas as pd
     import numpy as np
-     
+    
     # customer_prod_df
     d1 = {'customer_id':pd.Series([1,2,3,4,5,6]),
       'product':pd.Series(['Oven','Oven','Oven','Television','Television','Television'])}
@@ -262,9 +262,9 @@ pandas 的 ``merge`` 操作可以合并两个 ``DataFrame``\ （或者称为表�
 
 
 
-合并两个表时，通常需要使用键（key）来判断哪些数据与哪些数据合并。比如本例中，两个表都包含\ ``customer_id``
-这个字段，\ ``customer_id`` 可以被用来连接这两个 ``DataFrame``\ 。相同
-``customer_id`` 的行被合并在一起。
+合并两个表时，通常需要使用键（key）来判断哪些数据与哪些数据合并。比如本例中，两个表都包含
+``customer_id`` 这个字段，\ ``customer_id`` 可以被用来连接这两个
+``DataFrame``\ 。相同 ``customer_id`` 的行被合并在一起。
 
 我们回到 ``merge``
 函数的参数。完整的参数形式为：\ ``pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False,suffixes=('_x','_y'))``\ 。虽然参数很多，其实大部分时间我们主要关心的是
@@ -282,8 +282,8 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 不一定都包含同样的值。比如，如果左侧表包含某个 ``customer_id``
 但右侧表不包含这个
 ``customer_id``\ ，那应该遵循什么样的逻辑去合并。\ ``how='inner'``
-是其中一种方式，叫做内连接：只有在左侧 DataFrame 和右侧 DataFrame
-中\ **都**\ 存在的行才会包含在结果中。
+是其中一种方式，叫做内连接：只有在左侧 DataFrame 和右侧 DataFrame 中
+\*\* 都 \*\* 存在的行才会包含在结果中。
 
 ``how`` 除了 ``inner``\ ，还有其他的选项：\ ``outer``\ 、\ ``left`` 和
 ``right``\ 。
@@ -408,7 +408,7 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 .. code:: ipython3
 
     left_join_df= pd.merge(customer_prod_df, customer_state_df, on='customer_id', how='left')
-    left_join_df 
+    left_join_df
 
 
 
@@ -492,7 +492,7 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 .. code:: ipython3
 
     right_join_df= pd.merge(customer_prod_df, customer_state_df, on='customer_id', how='right')
-    right_join_df 
+    right_join_df
 
 
 
@@ -562,9 +562,8 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 其他合并方式
 ^^^^^^^^^^^^
 
-还有一些其他合并，不是根据 key
-去在左右表中查找。比如，根据\ ``DataFrame``\ 最左侧的 index
-列。\ ``DataFrame`` 默认有 index
+还有一些其他合并，不是根据 key 去在左右表中查找。比如，根据
+``DataFrame`` 最左侧的 index 列。\ ``DataFrame`` 默认有 index
 列，根据该列合并两个表，由于此时不是根据 ``customer_id``
 来合并，合并之后保留了两个 ``customer_id``\ ，为了区别左右两表的
 ``customer_id``\ ，这里加了后缀 ``_x`` 和 ``_y``\ 。
@@ -653,7 +652,7 @@ concat
 ~~~~~~
 
 与 ``merge`` 对表结构进行横向的操作不同，\ ``concat``
-函数默认是进行纵向的合并，也就是将多行进行\ **堆叠式**\ 的合并。
+函数默认是进行纵向的合并，也就是将多行进行 \*\* 堆叠式 \*\* 的合并。
 
 比如下面的例子，把所有的行和所有的列合并在一起，缺失的填充 ``NaN``\ 。
 
@@ -767,7 +766,7 @@ concat
 
 
 
-下面的例子，设定了\ ``join="inner"``\ ，两个表中都包含 ``customer_id``
+下面的例子，设定了 ``join="inner"``\ ，两个表中都包含 ``customer_id``
 字段进行了纵向合并。需要注意的是，\ ``concat``
 是进行纵向的堆叠，而没有去除重复的 ``customer_id``\ 。
 
@@ -857,8 +856,11 @@ concat
 
 
 
-案例
-~~~~
+案例：学生成绩
+~~~~~~~~~~~~~~
+
+我们使用一个学生成绩的案例来演示如何对两个 ``DataFrame`` 进行
+``merge``\ 。
 
 .. raw:: latex
 
@@ -866,140 +868,42 @@ concat
 
 .. code:: ipython3
 
+    # Hide outputs
     import urllib.request
     import os
     import pandas as pd
     
-    folder_path = os.path.join(os.getcwd(), "./data/euro-soccer")
-    team_download_url = "Team.csv"
-    team_attr_download_url = "Team_Attributes.csv"
+    folder_path = os.path.join(os.getcwd(), "./data/student-score")
+    score_download_url = "score.csv"
+    student_attr_download_url = "student.csv"
     
-    team_file_name = team_download_url.split("/")[-1]
-    team_attr_file_name = team_attr_download_url.split("/")[-1]
-    team_path = os.path.join(folder_path, team_file_name)
-    team_attr_path = os.path.join(folder_path, team_attr_file_name)
+    score_file_name = score_download_url.split("/")[-1]
+    student_file_name = student_attr_download_url.split("/")[-1]
+    score_path = os.path.join(folder_path, score_file_name)
+    student_path = os.path.join(folder_path, student_file_name)
     
     if not os.path.exists(folder_path):
         # 创建文件夹
         os.makedirs(folder_path)
         print(f"文件夹不存在，已创建。")
     
-        team_file_path = os.path.join(folder_path, team_file_name)
-        team_attr_path = os.path.join(folder_path, team_file_name)
-        urllib.request.urlretrieve(team_download_url, team_file_path)
-        urllib.request.urlretrieve(team_attr_download_url, team_attr_path)
+        urllib.request.urlretrieve(score_download_url, score_path)
+        urllib.request.urlretrieve(student_attr_download_url, student_path)
         print("数据已下载。")
     else:
         print(f"文件夹已存在，无需操作。")
 
-
-.. raw:: latex
-
-   \diilbookstyleoutputcell
-
-.. parsed-literal::
-    :class: output
-
-    文件夹已存在，无需操作。
-
-
 .. raw:: latex
 
    \diilbookstyleinputcell
 
 .. code:: ipython3
 
-    print("Team Attribute DataFrame")
-    team_attr_df = pd.read_csv(team_attr_path)
-    print(f"shape of this DF: {team_attr_df.shape}")
-    print(f"the first 8 columns and the first 2 rows of this DF: {team_attr_df.shape}")
-    team_attr_df.iloc[:, :8].head(2)
-
-
-.. raw:: latex
-
-   \diilbookstyleoutputcell
-
-.. parsed-literal::
-    :class: output
-
-    Team Attribute DataFrame
-    shape of this DF: (1458, 25)
-    the first 8 columns and the first 2 rows of this DF: (1458, 25)
-
-
-
-
-.. raw:: html
-
-    <div>
-    <style scoped>
-        .dataframe tbody tr th:only-of-type {
-            vertical-align: middle;
-        }
-    
-        .dataframe tbody tr th {
-            vertical-align: top;
-        }
-    
-        .dataframe thead th {
-            text-align: right;
-        }
-    </style>
-    <table border="1" class="dataframe">
-      <thead>
-        <tr style="text-align: right;">
-          <th></th>
-          <th>id</th>
-          <th>team_fifa_api_id</th>
-          <th>team_api_id</th>
-          <th>date</th>
-          <th>buildUpPlaySpeed</th>
-          <th>buildUpPlaySpeedClass</th>
-          <th>buildUpPlayDribbling</th>
-          <th>buildUpPlayDribblingClass</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>0</th>
-          <td>1</td>
-          <td>434</td>
-          <td>9930</td>
-          <td>2010-02-22 00:00:00</td>
-          <td>60</td>
-          <td>Balanced</td>
-          <td>NaN</td>
-          <td>Little</td>
-        </tr>
-        <tr>
-          <th>1</th>
-          <td>2</td>
-          <td>434</td>
-          <td>9930</td>
-          <td>2014-09-19 00:00:00</td>
-          <td>52</td>
-          <td>Balanced</td>
-          <td>48.0</td>
-          <td>Normal</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-
-
-
-.. raw:: latex
-
-   \diilbookstyleinputcell
-
-.. code:: ipython3
-
-    print("Team DataFrame")
-    team_df = pd.read_csv(team_path)
-    print(f"Shape of this DF: {team_df.shape}")
+    print("student DF:")
+    student_df = pd.read_csv(student_path, encoding = "UTF-8")
+    print(f"shape of this DF: {student_df.shape}")
     print("the first 2 rows of this DF:")
-    team_df.head(2)
+    student_df.head(2)
 
 
 .. raw:: latex
@@ -1009,8 +913,8 @@ concat
 .. parsed-literal::
     :class: output
 
-    Team DataFrame
-    Shape of this DF: (299, 5)
+    student DF:
+    shape of this DF: (44, 7)
     the first 2 rows of this DF:
 
 
@@ -1036,29 +940,35 @@ concat
       <thead>
         <tr style="text-align: right;">
           <th></th>
-          <th>id</th>
-          <th>team_api_id</th>
-          <th>team_fifa_api_id</th>
-          <th>team_long_name</th>
-          <th>team_short_name</th>
+          <th>sno</th>
+          <th>sname</th>
+          <th>sex</th>
+          <th>dept</th>
+          <th>major</th>
+          <th>claasno</th>
+          <th>home_address</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>0</th>
+          <td>2019101101</td>
+          <td>张元</td>
+          <td>男</td>
+          <td>信息学院</td>
+          <td>计算机</td>
           <td>1</td>
-          <td>9987</td>
-          <td>673.0</td>
-          <td>KRC Genk</td>
-          <td>GEN</td>
+          <td>北京市</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>2</td>
-          <td>9993</td>
-          <td>675.0</td>
-          <td>Beerschot AC</td>
-          <td>BAC</td>
+          <td>2019101102</td>
+          <td>李玲</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>计算机</td>
+          <td>1</td>
+          <td>天津市</td>
         </tr>
       </tbody>
     </table>
@@ -1072,10 +982,11 @@ concat
 
 .. code:: ipython3
 
-    merged_df = pd.merge(left = team_attr_df, right = team_df, how = 'left', on = 'team_api_id')
-    print(f"shape of this DF: {team_attr_df.shape}")
-    print("the first 2 rows:")
-    merged_df.head(2)
+    print("score DF:")
+    score_df = pd.read_csv(score_path, encoding = "UTF-8")
+    print(f"Shape of this DF: {score_df.shape}")
+    print("the first 2 rows of this DF:")
+    score_df.head(2)
 
 
 .. raw:: latex
@@ -1085,7 +996,83 @@ concat
 .. parsed-literal::
     :class: output
 
-    shape of this DF: (1458, 25)
+    score DF:
+    Shape of this DF: (43, 4)
+    the first 2 rows of this DF:
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>sno</th>
+          <th>cno</th>
+          <th>cname</th>
+          <th>score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>2019101103</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>78</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>2019102105</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>97</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+可以看到两个表都包含了 ``sno``\ ，也就是学号，可以使用学号作为 key
+进行合并。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: ipython3
+
+    merged_df = pd.merge(left = student_df, right = score_df, how = 'left', on = 'sno')
+    print(f"shape of this DF: {merged_df.shape}")
+    print("the first 2 rows:")
+    merged_df
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    shape of this DF: (44, 10)
     the first 2 rows:
 
 
@@ -1111,88 +1098,604 @@ concat
       <thead>
         <tr style="text-align: right;">
           <th></th>
-          <th>id_x</th>
-          <th>team_fifa_api_id_x</th>
-          <th>team_api_id</th>
-          <th>date</th>
-          <th>buildUpPlaySpeed</th>
-          <th>buildUpPlaySpeedClass</th>
-          <th>buildUpPlayDribbling</th>
-          <th>buildUpPlayDribblingClass</th>
-          <th>buildUpPlayPassing</th>
-          <th>buildUpPlayPassingClass</th>
-          <th>...</th>
-          <th>defencePressureClass</th>
-          <th>defenceAggression</th>
-          <th>defenceAggressionClass</th>
-          <th>defenceTeamWidth</th>
-          <th>defenceTeamWidthClass</th>
-          <th>defenceDefenderLineClass</th>
-          <th>id_y</th>
-          <th>team_fifa_api_id_y</th>
-          <th>team_long_name</th>
-          <th>team_short_name</th>
+          <th>sno</th>
+          <th>sname</th>
+          <th>sex</th>
+          <th>dept</th>
+          <th>major</th>
+          <th>claasno</th>
+          <th>home_address</th>
+          <th>cno</th>
+          <th>cname</th>
+          <th>score</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>0</th>
+          <td>2019101101</td>
+          <td>张元</td>
+          <td>男</td>
+          <td>信息学院</td>
+          <td>计算机</td>
           <td>1</td>
-          <td>434</td>
-          <td>9930</td>
-          <td>2010-02-22 00:00:00</td>
-          <td>60</td>
-          <td>Balanced</td>
-          <td>NaN</td>
-          <td>Little</td>
-          <td>50</td>
-          <td>Mixed</td>
-          <td>...</td>
-          <td>Medium</td>
-          <td>55</td>
-          <td>Press</td>
-          <td>45</td>
-          <td>Normal</td>
-          <td>Cover</td>
-          <td>49119</td>
-          <td>434.0</td>
-          <td>FC Aarau</td>
-          <td>AAR</td>
+          <td>北京市</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>89.0</td>
         </tr>
         <tr>
           <th>1</th>
+          <td>2019101102</td>
+          <td>李玲</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>计算机</td>
+          <td>1</td>
+          <td>天津市</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>80.0</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>2019101103</td>
+          <td>张浩</td>
+          <td>男</td>
+          <td>信息学院</td>
+          <td>信息资源管理</td>
           <td>2</td>
-          <td>434</td>
-          <td>9930</td>
-          <td>2014-09-19 00:00:00</td>
-          <td>52</td>
-          <td>Balanced</td>
-          <td>48.0</td>
-          <td>Normal</td>
-          <td>56</td>
-          <td>Mixed</td>
-          <td>...</td>
-          <td>Medium</td>
-          <td>44</td>
-          <td>Press</td>
-          <td>54</td>
-          <td>Normal</td>
-          <td>Cover</td>
-          <td>49119</td>
-          <td>434.0</td>
-          <td>FC Aarau</td>
-          <td>AAR</td>
+          <td>上海市</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>78.0</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>2019102101</td>
+          <td>王雨菲</td>
+          <td>女</td>
+          <td>财金学院</td>
+          <td>财政学</td>
+          <td>3</td>
+          <td>重庆市</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>2019102102</td>
+          <td>赵靖</td>
+          <td>女</td>
+          <td>经济学院</td>
+          <td>计量经济</td>
+          <td>1</td>
+          <td>河北石家庄</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>5</th>
+          <td>2019102103</td>
+          <td>王明</td>
+          <td>女</td>
+          <td>经济学院</td>
+          <td>计量经济</td>
+          <td>2</td>
+          <td>山西太原</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>58.0</td>
+        </tr>
+        <tr>
+          <th>6</th>
+          <td>2019102104</td>
+          <td>李华</td>
+          <td>男</td>
+          <td>数学学院</td>
+          <td>应用数学</td>
+          <td>3</td>
+          <td>内蒙古呼和浩特</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>80.0</td>
+        </tr>
+        <tr>
+          <th>7</th>
+          <td>2019102105</td>
+          <td>张伟</td>
+          <td>男</td>
+          <td>数学学院</td>
+          <td>应用数学</td>
+          <td>4</td>
+          <td>辽宁沈阳</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>97.0</td>
+        </tr>
+        <tr>
+          <th>8</th>
+          <td>2019103101</td>
+          <td>赵娟</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>大数据</td>
+          <td>2</td>
+          <td>吉林长春</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>9</th>
+          <td>2019103102</td>
+          <td>刘磊</td>
+          <td>男</td>
+          <td>统计学院</td>
+          <td>统计学</td>
+          <td>2</td>
+          <td>黑龙江哈尔滨</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>89.0</td>
+        </tr>
+        <tr>
+          <th>10</th>
+          <td>2019103103</td>
+          <td>陈静</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>计算机</td>
+          <td>4</td>
+          <td>江苏南京</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>11</th>
+          <td>2019103104</td>
+          <td>杨晨</td>
+          <td>男</td>
+          <td>财金学院</td>
+          <td>金融</td>
+          <td>3</td>
+          <td>浙江杭州</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>89.0</td>
+        </tr>
+        <tr>
+          <th>12</th>
+          <td>2019103105</td>
+          <td>刘洋</td>
+          <td>男</td>
+          <td>经济学院</td>
+          <td>应用经济</td>
+          <td>1</td>
+          <td>安徽合肥</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>88.0</td>
+        </tr>
+        <tr>
+          <th>13</th>
+          <td>2019103106</td>
+          <td>刘婷</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>计算机</td>
+          <td>2</td>
+          <td>福建福州</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>79.0</td>
+        </tr>
+        <tr>
+          <th>14</th>
+          <td>2019103107</td>
+          <td>李军</td>
+          <td>男</td>
+          <td>统计学院</td>
+          <td>统计学</td>
+          <td>2</td>
+          <td>江西南昌</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>78.0</td>
+        </tr>
+        <tr>
+          <th>15</th>
+          <td>2019103108</td>
+          <td>张丽</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>大数据</td>
+          <td>4</td>
+          <td>山东济南</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>98.0</td>
+        </tr>
+        <tr>
+          <th>16</th>
+          <td>2019103109</td>
+          <td>王强</td>
+          <td>男</td>
+          <td>数学学院</td>
+          <td>基础数学</td>
+          <td>3</td>
+          <td>河南郑州</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>92.0</td>
+        </tr>
+        <tr>
+          <th>17</th>
+          <td>2019103110</td>
+          <td>李萍</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>计算机</td>
+          <td>2</td>
+          <td>湖北武汉</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>82.0</td>
+        </tr>
+        <tr>
+          <th>18</th>
+          <td>2019103111</td>
+          <td>赵鑫</td>
+          <td>男</td>
+          <td>统计学院</td>
+          <td>统计学</td>
+          <td>1</td>
+          <td>湖南长沙</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>86.0</td>
+        </tr>
+        <tr>
+          <th>19</th>
+          <td>2019103112</td>
+          <td>王霞</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>大数据</td>
+          <td>3</td>
+          <td>广东广州</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>90.0</td>
+        </tr>
+        <tr>
+          <th>20</th>
+          <td>2019103113</td>
+          <td>张鹏</td>
+          <td>男</td>
+          <td>财金学院</td>
+          <td>财政学</td>
+          <td>2</td>
+          <td>广西南宁</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>91.0</td>
+        </tr>
+        <tr>
+          <th>21</th>
+          <td>2019103114</td>
+          <td>陈杰</td>
+          <td>男</td>
+          <td>经济学院</td>
+          <td>应用经济</td>
+          <td>4</td>
+          <td>海南海口</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>83.0</td>
+        </tr>
+        <tr>
+          <th>22</th>
+          <td>2019103115</td>
+          <td>刘佳</td>
+          <td>男</td>
+          <td>经济学院</td>
+          <td>计量经济</td>
+          <td>2</td>
+          <td>四川成都</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>86.0</td>
+        </tr>
+        <tr>
+          <th>23</th>
+          <td>2019103116</td>
+          <td>王磊</td>
+          <td>男</td>
+          <td>数学学院</td>
+          <td>应用数学</td>
+          <td>3</td>
+          <td>贵州贵阳</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>89.0</td>
+        </tr>
+        <tr>
+          <th>24</th>
+          <td>2019103117</td>
+          <td>杨阳</td>
+          <td>男</td>
+          <td>数学学院</td>
+          <td>计算数学</td>
+          <td>1</td>
+          <td>云南昆明</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>79.0</td>
+        </tr>
+        <tr>
+          <th>25</th>
+          <td>2019103118</td>
+          <td>陈雪</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>大数据</td>
+          <td>4</td>
+          <td>西藏拉萨</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>80.0</td>
+        </tr>
+        <tr>
+          <th>26</th>
+          <td>2019103119</td>
+          <td>张健</td>
+          <td>男</td>
+          <td>财金学院</td>
+          <td>金融</td>
+          <td>2</td>
+          <td>陕西西安</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>87.0</td>
+        </tr>
+        <tr>
+          <th>27</th>
+          <td>2019103120</td>
+          <td>王梅</td>
+          <td>女</td>
+          <td>经济学院</td>
+          <td>应用经济</td>
+          <td>3</td>
+          <td>甘肃兰州</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>89.0</td>
+        </tr>
+        <tr>
+          <th>28</th>
+          <td>2019103121</td>
+          <td>李浩</td>
+          <td>男</td>
+          <td>数学学院</td>
+          <td>计算数学</td>
+          <td>1</td>
+          <td>青海西宁</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>80.0</td>
+        </tr>
+        <tr>
+          <th>29</th>
+          <td>2019103122</td>
+          <td>刘欣</td>
+          <td>女</td>
+          <td>信息学院</td>
+          <td>大数据</td>
+          <td>2</td>
+          <td>宁夏银川</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>84.0</td>
+        </tr>
+        <tr>
+          <th>30</th>
+          <td>2019103123</td>
+          <td>赵文</td>
+          <td>男</td>
+          <td>统计学院</td>
+          <td>统计学</td>
+          <td>1</td>
+          <td>新疆乌鲁木齐</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>87.0</td>
+        </tr>
+        <tr>
+          <th>31</th>
+          <td>2019103124</td>
+          <td>杨勇</td>
+          <td>男</td>
+          <td>信息学院</td>
+          <td>计算机</td>
+          <td>3</td>
+          <td>香港特别行政区</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>86.0</td>
+        </tr>
+        <tr>
+          <th>32</th>
+          <td>2019103125</td>
+          <td>王红</td>
+          <td>女</td>
+          <td>财金学院</td>
+          <td>财政学</td>
+          <td>4</td>
+          <td>澳门特别行政区</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>80.0</td>
+        </tr>
+        <tr>
+          <th>33</th>
+          <td>2019103126</td>
+          <td>张婷</td>
+          <td>女</td>
+          <td>经济学院</td>
+          <td>应用经济</td>
+          <td>1</td>
+          <td>台湾台北</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>87.0</td>
+        </tr>
+        <tr>
+          <th>34</th>
+          <td>2019103127</td>
+          <td>陈辉</td>
+          <td>男</td>
+          <td>财金学院</td>
+          <td>财政学</td>
+          <td>2</td>
+          <td>四川成都</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>78.0</td>
+        </tr>
+        <tr>
+          <th>35</th>
+          <td>2019103128</td>
+          <td>李明阳</td>
+          <td>男</td>
+          <td>经济学院</td>
+          <td>计量经济</td>
+          <td>3</td>
+          <td>广东广州</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>79.0</td>
+        </tr>
+        <tr>
+          <th>36</th>
+          <td>2019103129</td>
+          <td>王小芳</td>
+          <td>女</td>
+          <td>经济学院</td>
+          <td>计量经济</td>
+          <td>2</td>
+          <td>辽宁大连</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>77.0</td>
+        </tr>
+        <tr>
+          <th>37</th>
+          <td>2019103130</td>
+          <td>张鑫峰</td>
+          <td>男</td>
+          <td>信息学院</td>
+          <td>大数据</td>
+          <td>2</td>
+          <td>浙江宁波</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>77.0</td>
+        </tr>
+        <tr>
+          <th>38</th>
+          <td>2019103131</td>
+          <td>刘佳琪</td>
+          <td>女</td>
+          <td>财金学院</td>
+          <td>财政学</td>
+          <td>1</td>
+          <td>湖南长沙</td>
+          <td>CS101</td>
+          <td>程序设计</td>
+          <td>89.0</td>
+        </tr>
+        <tr>
+          <th>39</th>
+          <td>2019103132</td>
+          <td>陈伟杰</td>
+          <td>男</td>
+          <td>经济学院</td>
+          <td>应用经济</td>
+          <td>1</td>
+          <td>河北保定</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>83.0</td>
+        </tr>
+        <tr>
+          <th>40</th>
+          <td>2019103133</td>
+          <td>杨晓雨</td>
+          <td>女</td>
+          <td>经济学院</td>
+          <td>应用经济</td>
+          <td>2</td>
+          <td>河南许昌</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>91.0</td>
+        </tr>
+        <tr>
+          <th>41</th>
+          <td>2019103134</td>
+          <td>王宇航</td>
+          <td>男</td>
+          <td>数学学院</td>
+          <td>计算数学</td>
+          <td>3</td>
+          <td>湖南衡阳</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>42</th>
+          <td>2019103135</td>
+          <td>赵梦婷</td>
+          <td>女</td>
+          <td>数学学院</td>
+          <td>计算数学</td>
+          <td>4</td>
+          <td>河北沧州</td>
+          <td>CS203</td>
+          <td>数据结构与算法</td>
+          <td>92.0</td>
+        </tr>
+        <tr>
+          <th>43</th>
+          <td>2019103136</td>
+          <td>王鹏飞</td>
+          <td>男</td>
+          <td>统计学院</td>
+          <td>统计学</td>
+          <td>4</td>
+          <td>江西景德镇</td>
+          <td>E202</td>
+          <td>宏观经济</td>
+          <td>94.0</td>
         </tr>
       </tbody>
     </table>
-    <p>2 rows × 29 columns</p>
     </div>
 
 
 
-关于合并后的新表，列数一共29列。\ ``team_attr_df`` 一共25列，
-``team_df`` 一共5列，即，25 + 5 - 1，因为两个表都包含同样的一列
-``team_api_id``\ ，所以需要减一。
+关于合并后的新表，列数一共10列。\ ``student_df`` 一共7列， ``score_df``
+一共4列，即：7 + 4 - 1，因为两个表都包含同样的一列
+``sno``\ ，所以需要减一。
 
-行数一共1458，这与 ``team_attr_df`` 的列数一致。这是因为本例的 ``how``
-使用的 ``inner``\ 。
+我们使用的是 ``how='left'`` 的方式进行的合并。行数一共44，这与
+``student_df``
+的列数一致。我们打印完整合并后的新表，可以发现，在\ ``student_df``\ 中包含但
+``score_df`` 中不包含的成绩相关的信息显示 NaN。
+
+接下来我们就可以使用各类其他分析方式，对这个新的大表进行数据分析，这里不再赘述。
