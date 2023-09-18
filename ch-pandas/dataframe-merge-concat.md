@@ -111,59 +111,64 @@ concat_inner_df = pd.concat([customer_prod_df, customer_state_df], join = 'inner
 concat_inner_df
 ```
 
-### 案例
+### 案例：学生成绩
+
+我们使用一个学生成绩的案例来演示如何对两个 `DataFrame` 进行 `merge`。
 
 ```{.python .input}
+# Hide outputs
 import urllib.request
 import os
 import pandas as pd
 
-folder_path = os.path.join(os.getcwd(), "./data/euro-soccer")
-team_download_url = "Team.csv"
-team_attr_download_url = "Team_Attributes.csv"
+folder_path = os.path.join(os.getcwd(), "./data/student-score")
+score_download_url = "score.csv"
+student_attr_download_url = "student.csv"
 
-team_file_name = team_download_url.split("/")[-1]
-team_attr_file_name = team_attr_download_url.split("/")[-1]
-team_path = os.path.join(folder_path, team_file_name)
-team_attr_path = os.path.join(folder_path, team_attr_file_name)
+score_file_name = score_download_url.split("/")[-1]
+student_file_name = student_attr_download_url.split("/")[-1]
+score_path = os.path.join(folder_path, score_file_name)
+student_path = os.path.join(folder_path, student_file_name)
 
 if not os.path.exists(folder_path):
     # 创建文件夹
     os.makedirs(folder_path)
     print(f"文件夹不存在，已创建。")
 
-    team_file_path = os.path.join(folder_path, team_file_name)
-    team_attr_path = os.path.join(folder_path, team_file_name)
-    urllib.request.urlretrieve(team_download_url, team_file_path)
-    urllib.request.urlretrieve(team_attr_download_url, team_attr_path)
+    urllib.request.urlretrieve(score_download_url, score_path)
+    urllib.request.urlretrieve(student_attr_download_url, student_path)
     print("数据已下载。")
 else:
     print(f"文件夹已存在，无需操作。")
 ```
 
 ```{.python .input}
-print("Team Attribute DataFrame")
-team_attr_df = pd.read_csv(team_attr_path)
-print(f"shape of this DF: {team_attr_df.shape}")
-print(f"the first 8 columns and the first 2 rows of this DF: {team_attr_df.shape}")
-team_attr_df.iloc[:, :8].head(2)
-```
-
-```{.python .input}
-print("Team DataFrame")
-team_df = pd.read_csv(team_path)
-print(f"Shape of this DF: {team_df.shape}")
+print("student DF:")
+student_df = pd.read_csv(student_path, encoding = "UTF-8")
+print(f"shape of this DF: {student_df.shape}")
 print("the first 2 rows of this DF:")
-team_df.head(2)
+student_df.head(2)
 ```
 
 ```{.python .input}
-merged_df = pd.merge(left = team_attr_df, right = team_df, how = 'left', on = 'team_api_id')
-print(f"shape of this DF: {team_attr_df.shape}")
-print("the first 2 rows:")
-merged_df.head(2)
+print("score DF:")
+score_df = pd.read_csv(score_path, encoding = "UTF-8")
+print(f"Shape of this DF: {score_df.shape}")
+print("the first 2 rows of this DF:")
+score_df.head(2)
 ```
 
-关于合并后的新表，列数一共 29 列。`team_attr_df` 一共 25 列， `team_df` 一共 5 列，即，25 + 5 - 1，因为两个表都包含同样的一列 `team_api_id`，所以需要减一。
+可以看到两个表都包含了 `sno`，也就是学号，可以使用学号作为 key 进行合并。
 
-行数一共 1458，这与 `team_attr_df` 的列数一致。这是因为本例的 `how` 使用的 `inner`。
+```{.python .input}
+merged_df = pd.merge(left = student_df, right = score_df, how = 'left', on = 'sno')
+print(f"shape of this DF: {merged_df.shape}")
+print("the first 2 rows:")
+merged_df
+```
+
+关于合并后的新表，列数一共10列。`student_df` 一共7列， `score_df` 一共4列，即：7 + 4 - 1，因为两个表都包含同样的一列 `sno`，所以需要减一。
+
+我们使用的是 `how='left'` 的方式进行的合并。行数一共44，这与 `student_df` 的列数一致。我们打印完整合并后的新表，可以发现，在`student_df`中包含但 `score_df` 中不包含的成绩相关的信息显示 NaN。
+
+接下来我们就可以使用各类其他分析方式，对这个新的大表进行数据分析，这里不再赘述。

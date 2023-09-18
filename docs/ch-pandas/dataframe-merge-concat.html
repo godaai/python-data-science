@@ -367,9 +367,9 @@ Show Source
     </tr>
   </tbody>
 </table>
-</div><p>合并两个表时，通常需要使用键（key）来判断哪些数据与哪些数据合并。比如本例中，两个表都包含<code class="docutils literal notranslate"><span class="pre">customer_id</span></code>
-这个字段，<code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 可以被用来连接这两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>。相同
-<code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 的行被合并在一起。</p>
+</div><p>合并两个表时，通常需要使用键（key）来判断哪些数据与哪些数据合并。比如本例中，两个表都包含
+<code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 这个字段，<code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 可以被用来连接这两个
+<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>。相同 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 的行被合并在一起。</p>
 <p>我们回到 <code class="docutils literal notranslate"><span class="pre">merge</span></code>
 函数的参数。完整的参数形式为：<code class="docutils literal notranslate"><span class="pre">pd.merge(left,</span> <span class="pre">right,</span> <span class="pre">how='inner',</span> <span class="pre">on=None,</span> <span class="pre">left_on=None,</span> <span class="pre">right_on=None,</span> <span class="pre">left_index=False,</span> <span class="pre">right_index=False,</span> <span class="pre">sort=False,suffixes=('_x','_y'))</span></code>。虽然参数很多，其实大部分时间我们主要关心的是
 <code class="docutils literal notranslate"><span class="pre">left</span></code>、<code class="docutils literal notranslate"><span class="pre">right</span></code>、<code class="docutils literal notranslate"><span class="pre">how</span></code> 和 <code class="docutils literal notranslate"><span class="pre">on</span></code>。</p>
@@ -383,8 +383,8 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 不一定都包含同样的值。比如，如果左侧表包含某个 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>
 但右侧表不包含这个
 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，那应该遵循什么样的逻辑去合并。<code class="docutils literal notranslate"><span class="pre">how='inner'</span></code>
-是其中一种方式，叫做内连接：只有在左侧 DataFrame 和右侧 DataFrame
-中<strong>都</strong>存在的行才会包含在结果中。</p>
+是其中一种方式，叫做内连接：只有在左侧 DataFrame 和右侧 DataFrame 中
+** 都 ** 存在的行才会包含在结果中。</p>
 <p><code class="docutils literal notranslate"><span class="pre">how</span></code> 除了 <code class="docutils literal notranslate"><span class="pre">inner</span></code>，还有其他的选项：<code class="docutils literal notranslate"><span class="pre">outer</span></code>、<code class="docutils literal notranslate"><span class="pre">left</span></code> 和
 <code class="docutils literal notranslate"><span class="pre">right</span></code>。</p>
 <div class="figure align-default" id="id6">
@@ -613,9 +613,8 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 </div></div>
 <div class="section" id="id3">
 <h3><span class="section-number">3.6.1.2. </span>其他合并方式<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
-<p>还有一些其他合并，不是根据 key
-去在左右表中查找。比如，根据<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>最左侧的 index
-列。<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 默认有 index
+<p>还有一些其他合并，不是根据 key 去在左右表中查找。比如，根据
+<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 最左侧的 index 列。<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 默认有 index
 列，根据该列合并两个表，由于此时不是根据 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>
 来合并，合并之后保留了两个 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，为了区别左右两表的
 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，这里加了后缀 <code class="docutils literal notranslate"><span class="pre">_x</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_y</span></code>。</p>
@@ -690,7 +689,7 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 <div class="section" id="concat">
 <h2><span class="section-number">3.6.2. </span>concat<a class="headerlink" href="#concat" title="Permalink to this heading">¶</a></h2>
 <p>与 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 对表结构进行横向的操作不同，<code class="docutils literal notranslate"><span class="pre">concat</span></code>
-函数默认是进行纵向的合并，也就是将多行进行<strong>堆叠式</strong>的合并。</p>
+函数默认是进行纵向的合并，也就是将多行进行 ** 堆叠式 ** 的合并。</p>
 <p>比如下面的例子，把所有的行和所有的列合并在一起，缺失的填充 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>。</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_concat_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">])</span>
 <span class="n">row_concat_df</span>
@@ -788,7 +787,7 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
     </tr>
   </tbody>
 </table>
-</div><p>下面的例子，设定了<code class="docutils literal notranslate"><span class="pre">join=&quot;inner&quot;</span></code>，两个表中都包含 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>
+</div><p>下面的例子，设定了 <code class="docutils literal notranslate"><span class="pre">join=&quot;inner&quot;</span></code>，两个表中都包含 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>
 字段进行了纵向合并。需要注意的是，<code class="docutils literal notranslate"><span class="pre">concat</span></code>
 是进行纵向的堆叠，而没有去除重复的 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>。</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">concat_inner_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">],</span> <span class="n">join</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">)</span>
@@ -865,111 +864,44 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 </table>
 </div></div>
 <div class="section" id="id4">
-<h2><span class="section-number">3.6.3. </span>案例<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<h2><span class="section-number">3.6.3. </span>案例：学生成绩<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>我们使用一个学生成绩的案例来演示如何对两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 进行
+<code class="docutils literal notranslate"><span class="pre">merge</span></code>。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide outputs</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;./data/euro-soccer&quot;</span><span class="p">)</span>
-<span class="n">team_download_url</span> <span class="o">=</span> <span class="s2">&quot;Team.csv&quot;</span>
-<span class="n">team_attr_download_url</span> <span class="o">=</span> <span class="s2">&quot;Team_Attributes.csv&quot;</span>
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;./data/student-score&quot;</span><span class="p">)</span>
+<span class="n">score_download_url</span> <span class="o">=</span> <span class="s2">&quot;score.csv&quot;</span>
+<span class="n">student_attr_download_url</span> <span class="o">=</span> <span class="s2">&quot;student.csv&quot;</span>
 
-<span class="n">team_file_name</span> <span class="o">=</span> <span class="n">team_download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">team_attr_file_name</span> <span class="o">=</span> <span class="n">team_attr_download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">team_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">team_file_name</span><span class="p">)</span>
-<span class="n">team_attr_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">team_attr_file_name</span><span class="p">)</span>
+<span class="n">score_file_name</span> <span class="o">=</span> <span class="n">score_download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">student_file_name</span> <span class="o">=</span> <span class="n">student_attr_download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">score_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">score_file_name</span><span class="p">)</span>
+<span class="n">student_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">student_file_name</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
     <span class="c1"># 创建文件夹</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹不存在，已创建。&quot;</span><span class="p">)</span>
 
-    <span class="n">team_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">team_file_name</span><span class="p">)</span>
-    <span class="n">team_attr_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">team_file_name</span><span class="p">)</span>
-    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">team_download_url</span><span class="p">,</span> <span class="n">team_file_path</span><span class="p">)</span>
-    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">team_attr_download_url</span><span class="p">,</span> <span class="n">team_attr_path</span><span class="p">)</span>
+    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">score_download_url</span><span class="p">,</span> <span class="n">score_path</span><span class="p">)</span>
+    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">student_attr_download_url</span><span class="p">,</span> <span class="n">student_path</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;数据已下载。&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹已存在，无需操作。&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span>文件夹已存在，无需操作。
-</pre></div>
-</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Team Attribute DataFrame&quot;</span><span class="p">)</span>
-<span class="n">team_attr_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">team_attr_path</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shape of this DF: </span><span class="si">{</span><span class="n">team_attr_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the first 8 columns and the first 2 rows of this DF: </span><span class="si">{</span><span class="n">team_attr_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">team_attr_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Team</span> <span class="n">Attribute</span> <span class="n">DataFrame</span>
-<span class="n">shape</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span> <span class="p">(</span><span class="mi">1458</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
-<span class="n">the</span> <span class="n">first</span> <span class="mi">8</span> <span class="n">columns</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">first</span> <span class="mi">2</span> <span class="n">rows</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span> <span class="p">(</span><span class="mi">1458</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
-</pre></div>
-</div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>team_fifa_api_id</th>
-      <th>team_api_id</th>
-      <th>date</th>
-      <th>buildUpPlaySpeed</th>
-      <th>buildUpPlaySpeedClass</th>
-      <th>buildUpPlayDribbling</th>
-      <th>buildUpPlayDribblingClass</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>434</td>
-      <td>9930</td>
-      <td>2010-02-22 00:00:00</td>
-      <td>60</td>
-      <td>Balanced</td>
-      <td>NaN</td>
-      <td>Little</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>434</td>
-      <td>9930</td>
-      <td>2014-09-19 00:00:00</td>
-      <td>52</td>
-      <td>Balanced</td>
-      <td>48.0</td>
-      <td>Normal</td>
-    </tr>
-  </tbody>
-</table>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Team DataFrame&quot;</span><span class="p">)</span>
-<span class="n">team_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">team_path</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of this DF: </span><span class="si">{</span><span class="n">team_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;student DF:&quot;</span><span class="p">)</span>
+<span class="n">student_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">student_path</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shape of this DF: </span><span class="si">{</span><span class="n">student_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows of this DF:&quot;</span><span class="p">)</span>
-<span class="n">team_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">student_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Team</span> <span class="n">DataFrame</span>
-<span class="n">Shape</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span> <span class="p">(</span><span class="mi">299</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">student</span> <span class="n">DF</span><span class="p">:</span>
+<span class="n">shape</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 <span class="n">the</span> <span class="n">first</span> <span class="mi">2</span> <span class="n">rows</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span>
 </pre></div>
 </div>
@@ -991,39 +923,100 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>team_api_id</th>
-      <th>team_fifa_api_id</th>
-      <th>team_long_name</th>
-      <th>team_short_name</th>
+      <th>sno</th>
+      <th>sname</th>
+      <th>sex</th>
+      <th>dept</th>
+      <th>major</th>
+      <th>claasno</th>
+      <th>home_address</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>2019101101</td>
+      <td>张元</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>计算机</td>
       <td>1</td>
-      <td>9987</td>
-      <td>673.0</td>
-      <td>KRC Genk</td>
-      <td>GEN</td>
+      <td>北京市</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
-      <td>9993</td>
-      <td>675.0</td>
-      <td>Beerschot AC</td>
-      <td>BAC</td>
+      <td>2019101102</td>
+      <td>李玲</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>1</td>
+      <td>天津市</td>
     </tr>
   </tbody>
 </table>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="n">team_attr_df</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">team_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;team_api_id&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shape of this DF: </span><span class="si">{</span><span class="n">team_attr_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows:&quot;</span><span class="p">)</span>
-<span class="n">merged_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;score DF:&quot;</span><span class="p">)</span>
+<span class="n">score_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">score_path</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of this DF: </span><span class="si">{</span><span class="n">score_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows of this DF:&quot;</span><span class="p">)</span>
+<span class="n">score_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span> <span class="p">(</span><span class="mi">1458</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="n">DF</span><span class="p">:</span>
+<span class="n">Shape</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span> <span class="p">(</span><span class="mi">43</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">the</span> <span class="n">first</span> <span class="mi">2</span> <span class="n">rows</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sno</th>
+      <th>cno</th>
+      <th>cname</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019101103</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019102105</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>97</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>可以看到两个表都包含了 <code class="docutils literal notranslate"><span class="pre">sno</span></code>，也就是学号，可以使用学号作为 key
+进行合并。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">score_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;sno&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shape of this DF: </span><span class="si">{</span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows:&quot;</span><span class="p">)</span>
+<span class="n">merged_df</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="n">of</span> <span class="n">this</span> <span class="n">DF</span><span class="p">:</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">the</span> <span class="n">first</span> <span class="mi">2</span> <span class="n">rows</span><span class="p">:</span>
 </pre></div>
 </div>
@@ -1045,86 +1038,601 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id_x</th>
-      <th>team_fifa_api_id_x</th>
-      <th>team_api_id</th>
-      <th>date</th>
-      <th>buildUpPlaySpeed</th>
-      <th>buildUpPlaySpeedClass</th>
-      <th>buildUpPlayDribbling</th>
-      <th>buildUpPlayDribblingClass</th>
-      <th>buildUpPlayPassing</th>
-      <th>buildUpPlayPassingClass</th>
-      <th>...</th>
-      <th>defencePressureClass</th>
-      <th>defenceAggression</th>
-      <th>defenceAggressionClass</th>
-      <th>defenceTeamWidth</th>
-      <th>defenceTeamWidthClass</th>
-      <th>defenceDefenderLineClass</th>
-      <th>id_y</th>
-      <th>team_fifa_api_id_y</th>
-      <th>team_long_name</th>
-      <th>team_short_name</th>
+      <th>sno</th>
+      <th>sname</th>
+      <th>sex</th>
+      <th>dept</th>
+      <th>major</th>
+      <th>claasno</th>
+      <th>home_address</th>
+      <th>cno</th>
+      <th>cname</th>
+      <th>score</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>2019101101</td>
+      <td>张元</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>计算机</td>
       <td>1</td>
-      <td>434</td>
-      <td>9930</td>
-      <td>2010-02-22 00:00:00</td>
-      <td>60</td>
-      <td>Balanced</td>
-      <td>NaN</td>
-      <td>Little</td>
-      <td>50</td>
-      <td>Mixed</td>
-      <td>...</td>
-      <td>Medium</td>
-      <td>55</td>
-      <td>Press</td>
-      <td>45</td>
-      <td>Normal</td>
-      <td>Cover</td>
-      <td>49119</td>
-      <td>434.0</td>
-      <td>FC Aarau</td>
-      <td>AAR</td>
+      <td>北京市</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>89.0</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>2019101102</td>
+      <td>李玲</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>1</td>
+      <td>天津市</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019101103</td>
+      <td>张浩</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>信息资源管理</td>
       <td>2</td>
-      <td>434</td>
-      <td>9930</td>
-      <td>2014-09-19 00:00:00</td>
-      <td>52</td>
-      <td>Balanced</td>
-      <td>48.0</td>
-      <td>Normal</td>
-      <td>56</td>
-      <td>Mixed</td>
-      <td>...</td>
-      <td>Medium</td>
-      <td>44</td>
-      <td>Press</td>
-      <td>54</td>
-      <td>Normal</td>
-      <td>Cover</td>
-      <td>49119</td>
-      <td>434.0</td>
-      <td>FC Aarau</td>
-      <td>AAR</td>
+      <td>上海市</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019102101</td>
+      <td>王雨菲</td>
+      <td>女</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>3</td>
+      <td>重庆市</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019102102</td>
+      <td>赵靖</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>1</td>
+      <td>河北石家庄</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2019102103</td>
+      <td>王明</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>2</td>
+      <td>山西太原</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>58.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2019102104</td>
+      <td>李华</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>应用数学</td>
+      <td>3</td>
+      <td>内蒙古呼和浩特</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2019102105</td>
+      <td>张伟</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>应用数学</td>
+      <td>4</td>
+      <td>辽宁沈阳</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>97.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2019103101</td>
+      <td>赵娟</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>2</td>
+      <td>吉林长春</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2019103102</td>
+      <td>刘磊</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>2</td>
+      <td>黑龙江哈尔滨</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2019103103</td>
+      <td>陈静</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>4</td>
+      <td>江苏南京</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2019103104</td>
+      <td>杨晨</td>
+      <td>男</td>
+      <td>财金学院</td>
+      <td>金融</td>
+      <td>3</td>
+      <td>浙江杭州</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2019103105</td>
+      <td>刘洋</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>1</td>
+      <td>安徽合肥</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>88.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2019103106</td>
+      <td>刘婷</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>2</td>
+      <td>福建福州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>79.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2019103107</td>
+      <td>李军</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>2</td>
+      <td>江西南昌</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2019103108</td>
+      <td>张丽</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>4</td>
+      <td>山东济南</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>98.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2019103109</td>
+      <td>王强</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>基础数学</td>
+      <td>3</td>
+      <td>河南郑州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>92.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2019103110</td>
+      <td>李萍</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>2</td>
+      <td>湖北武汉</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>82.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2019103111</td>
+      <td>赵鑫</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>1</td>
+      <td>湖南长沙</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>86.0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2019103112</td>
+      <td>王霞</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>3</td>
+      <td>广东广州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>90.0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2019103113</td>
+      <td>张鹏</td>
+      <td>男</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>2</td>
+      <td>广西南宁</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>91.0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2019103114</td>
+      <td>陈杰</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>4</td>
+      <td>海南海口</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>83.0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2019103115</td>
+      <td>刘佳</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>2</td>
+      <td>四川成都</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>86.0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2019103116</td>
+      <td>王磊</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>应用数学</td>
+      <td>3</td>
+      <td>贵州贵阳</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2019103117</td>
+      <td>杨阳</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>计算数学</td>
+      <td>1</td>
+      <td>云南昆明</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>79.0</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2019103118</td>
+      <td>陈雪</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>4</td>
+      <td>西藏拉萨</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2019103119</td>
+      <td>张健</td>
+      <td>男</td>
+      <td>财金学院</td>
+      <td>金融</td>
+      <td>2</td>
+      <td>陕西西安</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2019103120</td>
+      <td>王梅</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>3</td>
+      <td>甘肃兰州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2019103121</td>
+      <td>李浩</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>计算数学</td>
+      <td>1</td>
+      <td>青海西宁</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2019103122</td>
+      <td>刘欣</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>2</td>
+      <td>宁夏银川</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>2019103123</td>
+      <td>赵文</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>1</td>
+      <td>新疆乌鲁木齐</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>2019103124</td>
+      <td>杨勇</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>3</td>
+      <td>香港特别行政区</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>86.0</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>2019103125</td>
+      <td>王红</td>
+      <td>女</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>4</td>
+      <td>澳门特别行政区</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>2019103126</td>
+      <td>张婷</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>1</td>
+      <td>台湾台北</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>2019103127</td>
+      <td>陈辉</td>
+      <td>男</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>2</td>
+      <td>四川成都</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>2019103128</td>
+      <td>李明阳</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>3</td>
+      <td>广东广州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>79.0</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>2019103129</td>
+      <td>王小芳</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>2</td>
+      <td>辽宁大连</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>77.0</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>2019103130</td>
+      <td>张鑫峰</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>2</td>
+      <td>浙江宁波</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>77.0</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>2019103131</td>
+      <td>刘佳琪</td>
+      <td>女</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>1</td>
+      <td>湖南长沙</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>2019103132</td>
+      <td>陈伟杰</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>1</td>
+      <td>河北保定</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>83.0</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>2019103133</td>
+      <td>杨晓雨</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>2</td>
+      <td>河南许昌</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>91.0</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2019103134</td>
+      <td>王宇航</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>计算数学</td>
+      <td>3</td>
+      <td>湖南衡阳</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2019103135</td>
+      <td>赵梦婷</td>
+      <td>女</td>
+      <td>数学学院</td>
+      <td>计算数学</td>
+      <td>4</td>
+      <td>河北沧州</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>92.0</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>2019103136</td>
+      <td>王鹏飞</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>4</td>
+      <td>江西景德镇</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>94.0</td>
     </tr>
   </tbody>
 </table>
-<p>2 rows × 29 columns</p>
-</div><p>关于合并后的新表，列数一共29列。<code class="docutils literal notranslate"><span class="pre">team_attr_df</span></code> 一共25列，
-<code class="docutils literal notranslate"><span class="pre">team_df</span></code> 一共5列，即，25 + 5 - 1，因为两个表都包含同样的一列
-<code class="docutils literal notranslate"><span class="pre">team_api_id</span></code>，所以需要减一。</p>
-<p>行数一共1458，这与 <code class="docutils literal notranslate"><span class="pre">team_attr_df</span></code> 的列数一致。这是因为本例的 <code class="docutils literal notranslate"><span class="pre">how</span></code>
-使用的 <code class="docutils literal notranslate"><span class="pre">inner</span></code>。</p>
+</div><p>关于合并后的新表，列数一共10列。<code class="docutils literal notranslate"><span class="pre">student_df</span></code> 一共7列， <code class="docutils literal notranslate"><span class="pre">score_df</span></code>
+一共4列，即：7 + 4 - 1，因为两个表都包含同样的一列
+<code class="docutils literal notranslate"><span class="pre">sno</span></code>，所以需要减一。</p>
+<p>我们使用的是 <code class="docutils literal notranslate"><span class="pre">how='left'</span></code> 的方式进行的合并。行数一共44，这与
+<code class="docutils literal notranslate"><span class="pre">student_df</span></code>
+的列数一致。我们打印完整合并后的新表，可以发现，在<code class="docutils literal notranslate"><span class="pre">student_df</span></code>中包含但
+<code class="docutils literal notranslate"><span class="pre">score_df</span></code> 中不包含的成绩相关的信息显示 NaN。</p>
+<p>接下来我们就可以使用各类其他分析方式，对这个新的大表进行数据分析，这里不再赘述。</p>
 </div>
 </div>
 
@@ -1144,7 +1652,7 @@ key 字段应该是表示同一个事物。现在我们要根据 key，把两个
 </ul>
 </li>
 <li><a class="reference internal" href="#concat">3.6.2. concat</a></li>
-<li><a class="reference internal" href="#id4">3.6.3. 案例</a></li>
+<li><a class="reference internal" href="#id4">3.6.3. 案例：学生成绩</a></li>
 </ul>
 </li>
 </ul>

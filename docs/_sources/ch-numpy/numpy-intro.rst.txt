@@ -26,7 +26,7 @@ SciPy、pandas 和 Matplotlib，都构建在 NumPy 之上。
 
    \diilbookstyleinputcell
 
-.. code:: ipython3
+.. code:: python
 
     # Hide outputs
     !pip install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple
