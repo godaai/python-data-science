@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>一元函数 &#8212; Python 数据科学实战 1.0.0 documentation</title>
+
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/d2l.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/d2l.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
+    <div class="mdl-layout__header-row">
+        
+        <nav class="mdl-navigation breadcrumb">
+            <a class="mdl-navigation__link is-active">一元函数</a>
+        </nav>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+        
+<form class="form-inline pull-sm-right" action="../search.html" method="get">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon"  for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="q"  id="waterfall-exp" placeholder="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </div>
+      </div>
+      <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
+      Quick search
+      </div>
+</form>
+        
+<a id="button-show-source"
+    class="mdl-button mdl-js-button mdl-button--icon"
+    href="../_sources/ch-numpy/unary-ops.rst.txt" rel="nofollow">
+  <i class="material-icons">code</i>
+</a>
+<div class="mdl-tooltip" data-mdl-for="button-show-source">
+Show Source
+</div>
+        </nav>
+    </div>
+    <div class="mdl-layout__header-row header-links">
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+          
+              <a  class="mdl-navigation__link" href="https://github.com/py-101/python-data-science">
+                  <i class="fab fa-github"></i>
+                  GitHub
+              </a>
+      </nav>
+    </div>
+</header><header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../index.html">
+              <span class="title-text">
+                  Python 数据科学实战
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.1. 本书主要内容</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">2. NumPy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="numpy-intro.html">2.1. NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndarray.html">2.2. ndarray</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-pandas/index.html">3. pandas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/pandas-intro.html">3.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/series-dataframe.html">3.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-slicing.html">3.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/data-preprocessing.html">3.4. 数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-groupby.html">3.5. 分组汇总</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-merge-concat.html">3.6. 多表操作</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">4. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+        <main class="mdl-layout__content" tabIndex="0">
+
+	<script type="text/javascript" src="../_static/sphinx_materialdesign_theme.js "></script>
+    <header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../index.html">
+              <span class="title-text">
+                  Python 数据科学实战
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.1. 本书主要内容</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">2. NumPy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="numpy-intro.html">2.1. NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndarray.html">2.2. ndarray</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-pandas/index.html">3. pandas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/pandas-intro.html">3.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/series-dataframe.html">3.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-slicing.html">3.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/data-preprocessing.html">3.4. 数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-groupby.html">3.5. 分组汇总</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-merge-concat.html">3.6. 多表操作</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">4. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+
+    <div class="document">
+        <div class="page-content" role="main">
+        
+  <div class="section" id="id1">
+<h1>一元函数<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+</div>
+
+
+        </div>
+        <div class="side-doc-outline">
+            <div class="side-doc-outline--content"> 
+            </div>
+        </div>
+
+      <div class="clearer"></div>
+    </div><div class="pagenation">
+  </div>
+        
+        </main>
+    </div>
+  </body>
+</html>

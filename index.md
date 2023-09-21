@@ -5,11 +5,14 @@
    :file: frontpage.html
 ```
 
-````toc
+```toc
 :maxdepth: 2
 :numbered:
 
 ch-python-lang/index
 
+ch-numpy/index
+ch-pandas/index
+
 refs
-````
+```
