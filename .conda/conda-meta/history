@@ -1,0 +1,18 @@
+==> 2023-09-22 13:53:03 <==
+# cmd: /Users/xu/anaconda3/lib/python3.7/site-packages/conda/__main__.py create --yes --prefix .conda python=3.8
+# conda version: 4.10.1
++defaults/osx-64::ca-certificates-2023.08.22-hecd8cb5_0
++defaults/osx-64::libcxx-14.0.6-h9765a3e_0
++defaults/osx-64::libffi-3.4.4-hecd8cb5_0
++defaults/osx-64::ncurses-6.4-hcec6c5f_0
++defaults/osx-64::openssl-3.0.11-hca72f7f_2
++defaults/osx-64::pip-23.2.1-py38hecd8cb5_0
++defaults/osx-64::python-3.8.18-h5ee71fb_0
++defaults/osx-64::readline-8.2-hca72f7f_0
++defaults/osx-64::setuptools-68.0.0-py38hecd8cb5_0
++defaults/osx-64::sqlite-3.41.2-h6c40b1e_0
++defaults/osx-64::tk-8.6.12-h5d9f67b_0
++defaults/osx-64::wheel-0.38.4-py38hecd8cb5_0
++defaults/osx-64::xz-5.4.2-h6c40b1e_0
++defaults/osx-64::zlib-1.2.13-h4dc903c_0
+# update specs: ['python=3.8']

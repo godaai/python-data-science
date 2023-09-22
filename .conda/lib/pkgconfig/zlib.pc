@@ -1,0 +1,13 @@
+prefix=/Users/xu/Desktop/python-data-science/.conda
+exec_prefix=/Users/xu/Desktop/python-data-science/.conda
+libdir=/Users/xu/Desktop/python-data-science/.conda/lib
+sharedlibdir=/Users/xu/Desktop/python-data-science/.conda/lib
+includedir=/Users/xu/Desktop/python-data-science/.conda/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
