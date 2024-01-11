@@ -14,5 +14,3 @@ test*.md
 run.sh
 .idea
 env
-
-.github/workflows/deploy.yml

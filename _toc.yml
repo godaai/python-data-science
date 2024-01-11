@@ -1,37 +1,30 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
-format: jb-book
 root: index
-parts:
-  - caption: 数据处理与计算
-    numbered: true
-    chapters:
-    - file: ch-numpy/index
-      sections:
-        - file: ch-numpy/numpy-intro
-        - file: ch-numpy/ndarray
-        - file: ch-numpy/ndarray-slicing-index
-        - file: ch-numpy/random
-    
-    - file: ch-pandas/index
-      sections:
-        - file: ch-pandas/pandas-intro
-        - file: ch-pandas/series-dataframe
-        - file: ch-pandas/dataframe-slicing
-        - file: ch-pandas/data-preprocessing
-        - file: ch-pandas/dataframe-groupby
-        - file: ch-pandas/dataframe-merge-concat
-        - file: ch-pandas/dataframe-pivot-melt
-    
-  - caption: 数据可视化
-    numbered: true
-    chapters:
-    - file: ch-matplotlib/index
-      sections:
-        - file: ch-matplotlib/matplotlib-intro
-        - file: ch-matplotlib/matplotlib-figure-axes
-        - file: ch-matplotlib/matplotlib-data
-        - file: ch-matplotlib/matplotlib-other-parameters
-        - file: ch-matplotlib/matplotlib-coding-styles
-        - file: ch-matplotlib/matplotlib-plot-types
+subtrees:
+- numbered: 2
+  entries:
+  - file: ch-numpy/index
+    entries:
+    - file: ch-numpy/numpy-intro
+    - file: ch-numpy/ndarray
+    - file: ch-numpy/ndarray-slicing-index
+    - file: ch-numpy/random
+  - file: ch-pandas/index
+    entries:
+    - file: ch-pandas/pandas-intro
+    - file: ch-pandas/series-dataframe
+    - file: ch-pandas/dataframe-slicing
+    - file: ch-pandas/data-preprocessing
+    - file: ch-pandas/dataframe-groupby
+    - file: ch-pandas/dataframe-merge-concat
+    - file: ch-pandas/dataframe-pivot-melt
+  - file: ch-matplotlib/index
+    entries:
+    - file: ch-matplotlib/intro
+    - file: ch-matplotlib/figure-axes
+    - file: ch-matplotlib/data
+    - file: ch-matplotlib/other-parameters
+    - file: ch-matplotlib/coding-styles
+    - file: ch-matplotlib/plot-types
+  - file: ch-plotly/index
+    entries:
+    - file: ch-plotly/intro
