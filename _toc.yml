@@ -28,3 +28,6 @@ subtrees:
   - file: ch-plotly/index
     entries:
     - file: ch-plotly/intro
+    - file: ch-plotly/elements
+    - file: ch-plotly/simple-traces
+    - file: ch-plotly/finance-traces
