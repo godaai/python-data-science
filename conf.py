@@ -40,7 +40,8 @@ html_theme_options = {
     "toc_title": "本节目录",
 }
 html_title = 'Python 数据科学实战'
-
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 html_js_files = [
     "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js",
 ]

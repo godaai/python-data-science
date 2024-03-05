@@ -8,6 +8,7 @@ subtrees:
     - file: ch-numpy/ndarray
     - file: ch-numpy/ndarray-slicing-index
     - file: ch-numpy/random
+    - file: ch-numpy/ops
   - file: ch-pandas/index
     entries:
     - file: ch-pandas/pandas-intro
